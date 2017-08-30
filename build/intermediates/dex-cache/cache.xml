@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/aydar/AndroidStudioProjects/ListNotePades2/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.1.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="aee64634871d88a419d59eb743c1258a60f19700">
+        <dex dex="/Users/aydar/AndroidStudioProjects/ListNotePades2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-ui-25.1.0_d93f49b19c6d9a646e37afea28002df8ad433afd/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/aydar/AndroidStudioProjects/ListNotePades2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/8.4.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="65d086ee9daaf87b5af62ad24471edafa433354c">
+        <dex dex="/Users/aydar/AndroidStudioProjects/ListNotePades2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-appindexing-8.4.0_501efc817d4eb7da2900114a28173a03e65c5230/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/aydar/AndroidStudioProjects/ListNotePades2/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.1.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/aydar/AndroidStudioProjects/ListNotePades2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-25.1.0_c701ecf40c33595843aa83f466ede5fddb672ae8/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/aydar/AndroidStudioProjects/ListNotePades2/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.1.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="2a53c4f3518116b8c6aee0e477233f0f7da8616f">
+        <dex dex="/Users/aydar/AndroidStudioProjects/ListNotePades2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-fragment-25.1.0_41a3a8305ef82f80cedd3c7950a4a607a505588d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/aydar/AndroidStudioProjects/ListNotePades2/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="696c0169df9aa0451c3527e307536a3c62698f01">
+        <dex dex="/Users/aydar/AndroidStudioProjects/ListNotePades2/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_42de226cb7c1a756f822598e73f679dbc1c49316/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/aydar/AndroidStudioProjects/ListNotePades2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="1630658fbc2d222b988603c27b4a4249586fbfe7">
+        <dex dex="/Users/aydar/AndroidStudioProjects/ListNotePades2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-25.1.0_665397c385b718034022a59121c9c8c61d0aae09/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/aydar/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.1.0/support-annotations-25.1.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="64cb6b229a8bdfd907bc8dd46839a0053e4c018d">
+        <dex dex="/Users/aydar/AndroidStudioProjects/ListNotePades2/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-25.1.0_1101c457aee1ef3f846383ada1e8fc91131fb9e7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/aydar/AndroidStudioProjects/ListNotePades2/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.1.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e79aa3d9a16f8c9f16377c0608de70a8f31e5d80">
+        <dex dex="/Users/aydar/AndroidStudioProjects/ListNotePades2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-25.1.0_dc5860bbf30d2822b7f2d986b4cbd1114d87973c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/aydar/AndroidStudioProjects/ListNotePades2/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.1.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0a0ef86b7fa568a52bf6214a0326ca1f1d618da7">
+        <dex dex="/Users/aydar/AndroidStudioProjects/ListNotePades2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-utils-25.1.0_ec2e9b37ff4179d043e1774a2bd64a0eccd404dd/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/aydar/AndroidStudioProjects/ListNotePades2/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.1.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6fb6ac3e8d3b9013819920d9ea11f3803c4c0033">
+        <dex dex="/Users/aydar/AndroidStudioProjects/ListNotePades2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-25.1.0_f3f23771f418554af74e074ce7254c66d9864b39/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/aydar/AndroidStudioProjects/ListNotePades2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.4.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="8e673cdfadd8f2d98fdb2fda2285c30f6e449782">
+        <dex dex="/Users/aydar/AndroidStudioProjects/ListNotePades2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-basement-8.4.0_9fd54ebcba9c66f4fe3a4f4372c328b238ab79b4/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/aydar/AndroidStudioProjects/ListNotePades2/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.1.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ca3c7aa31e2726a400a6e552b93cb9f63c9a1e6d">
+        <dex dex="/Users/aydar/AndroidStudioProjects/ListNotePades2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-compat-25.1.0_0f872312e6e62c8c348229cda4aee0d7f589b277/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/aydar/AndroidStudioProjects/ListNotePades2/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.1.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="f02263e35e52668dd17b73bf961437e3d562b35f">
+        <dex dex="/Users/aydar/AndroidStudioProjects/ListNotePades2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-media-compat-25.1.0_575f6a68aac0c03a3e5ce04f8e668d5bf0b5c9b5/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/aydar/AndroidStudioProjects/ListNotePades2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/8.4.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="fef2b3e4b6b1b0e5fe7b69fa137a5fa55a3182ab">
+        <dex dex="/Users/aydar/AndroidStudioProjects/ListNotePades2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-base-8.4.0_40b29bd1499823f5dc72c26542c12d790880764c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/aydar/AndroidStudioProjects/ListNotePades2/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="8b35dec4a7c904f8c74da432ed85aa3eeab2eee9">
+        <dex dex="/Users/aydar/AndroidStudioProjects/ListNotePades2/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_526ea81c79edb5835e0db6c13215e7da33c5cf98/classes.dex" />
+    </item>
+
+</items>

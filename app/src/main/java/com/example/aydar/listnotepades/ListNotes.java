@@ -18,6 +18,7 @@ import com.example.aydar.listnotepades.Data.NotePadesDBHelper;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.StringTokenizer;
 
 public class ListNotes extends AppCompatActivity {
 
@@ -28,7 +29,7 @@ public class ListNotes extends AppCompatActivity {
     private ArrayAdapter mAdapter;
 
     String idUser = new String();
-    Integer tmp = 3;
+    Integer posItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +40,8 @@ public class ListNotes extends AppCompatActivity {
 
         idUser = getIntent().getStringExtra("id_user");
 
-        Toast.makeText(this, idUser , Toast.LENGTH_SHORT).show();
         setNotesContent();
+
         mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listNotes);
 
         listViewNotes2.setAdapter(mAdapter);
@@ -49,12 +50,12 @@ public class ListNotes extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View itemClicked, int position,
                                     long id) {
-                tmp = position;
-                Intent intent5 = new Intent(ListNotes.this, Note.class);
-                intent5.putExtra("id_user", idUser);
-                intent5.putExtra("type", "edit");
-                intent5.putExtra("id_note", tmp.toString());
-                startActivity(intent5);
+                posItem = position;
+                Intent intent = new Intent(ListNotes.this, Note.class);
+                intent.putExtra("id_user", idUser);
+                intent.putExtra("type", "edit");
+                intent.putExtra("id_note", getIDNote(posItem));
+                startActivity(intent);
             }
         });
 
@@ -67,32 +68,66 @@ public class ListNotes extends AppCompatActivity {
         SQLiteDatabase db = mDBHelper.getReadableDatabase();
 
         String[] projectionNotes = {
-                DataBase.Notepads.COLUMN_NAME
+                DataBase.Notes.COLUMN_NAME
         };
 
-        Cursor cursor3 = db.query(DataBase.Notepads.TABLE_NAME,
+        Cursor cursor = db.query(DataBase.Notes.TABLE_NAME,
                 projectionNotes,
                 "user_id = ?",
                 new String[] {idUser},
                 null,
                 null,
                 null);
-        if (cursor3.getCount() != 0) {
+        if (cursor.getCount() != 0) {
                 try {
-                    int nameIndex = cursor3.getColumnIndex(DataBase.Notepads.COLUMN_NAME);
-                    while (cursor3.moveToNext()) {
-                        listNotes.add(cursor3.getString(nameIndex).toString().trim());
+                    int nameIndex = cursor.getColumnIndex(DataBase.Notes.COLUMN_NAME);
+                    while (cursor.moveToNext()) {
+                        listNotes.add(cursor.getString(nameIndex).toString().trim());
                     }
                 } finally {
-                    cursor3.close();
+                    cursor.close();
+                    db.close();
                 }
         }
     }
 
+    private String getIDNote(Integer position) {
+        mDBHelper = new NotePadesDBHelper(this);
+
+        String idNote = "-1";
+
+        SQLiteDatabase db = mDBHelper.getReadableDatabase();
+
+        String[] projectionNotes = {
+                DataBase.Notes.COLUMN_NAME,
+                DataBase.Notes._ID
+        };
+
+        Cursor cursor = db.query(DataBase.Notes.TABLE_NAME,
+                projectionNotes,
+                "user_id = ?",
+                new String[]{idUser},
+                null,
+                null,
+                null);
+
+        if (cursor.getCount() != 0) {
+            try {
+                cursor.move(position+1);
+                int idIndex = cursor.getColumnIndex(DataBase.Notes._ID);
+                idNote = cursor.getString(idIndex);
+            } finally {
+                cursor.close();
+                db.close();
+            }
+        }
+        return idNote;
+    }
+
     public void addNewNote(View view) {
-        Intent intent4 = new Intent(ListNotes.this, Note.class);
-        intent4.putExtra("id_user", idUser);
-        intent4.putExtra("type", "new");
-        startActivity(intent4);
+        Intent intent = new Intent(ListNotes.this, Note.class);
+        intent.putExtra("id_user", idUser);
+        intent.putExtra("type", "new");
+        startActivity(intent);
     }
 }

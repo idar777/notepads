@@ -17,7 +17,18 @@ public class Users {
     //
     private NotePadesDBHelper mDBHelper;
 
-    public boolean checkUserExists(String mLogin){ //Проверка вводимых данных и на существование
+    public boolean checkUserExists(Context context, String mLogin){ //Проверка на существование
+        mDBHelper = new NotePadesDBHelper(context);
+        SQLiteDatabase db = mDBHelper.getReadableDatabase();
+
+        String mQuery = "SELECT * FROM " + DataBase.Users.TABLE_NAME + " WHERE "
+                + DataBase.Users.COLUMN_LOGIN + " = " + mLogin;
+
+        Cursor cursor = db.rawQuery(mQuery, null);
+
+        if (cursor.getCount() >= 1) {
+            return true;
+        };
         return false;
     };
 

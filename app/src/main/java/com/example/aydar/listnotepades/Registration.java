@@ -32,7 +32,7 @@ public class Registration extends AppCompatActivity {
         Users usersWork = new Users();
 
         if (usersWork.checkUserName(mLoginData)) {
-            if (usersWork.checkUserExists(mLoginData)) {
+            if (usersWork.checkUserExists(this, mLoginData)) {
                 Toast.makeText(this, "Пользователь с данным e-mail уже существует", Toast.LENGTH_SHORT).show();
             } else {
                 NotePadesDBHelper mDBHelper = new NotePadesDBHelper(this);
@@ -48,7 +48,7 @@ public class Registration extends AppCompatActivity {
                 db.close();
 
                 Intent intent = new Intent(Registration.this, ListNotes.class);
-                intent.putExtra("id_user", newRowId);
+                intent.putExtra("id_user", String.valueOf(newRowId));
                 startActivity(intent);
             }
         } else {

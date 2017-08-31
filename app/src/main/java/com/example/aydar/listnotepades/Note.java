@@ -1,6 +1,7 @@
 package com.example.aydar.listnotepades;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
@@ -11,14 +12,15 @@ import android.widget.Toast;
 
 import com.example.aydar.listnotepades.Data.DataBase;
 import com.example.aydar.listnotepades.Data.NotePadesDBHelper;
+import com.example.aydar.listnotepades.Data.Notes;
 
 public class Note extends AppCompatActivity {
 
     private NotePadesDBHelper mDBHelper;
 
     String type = new String();
-    String idUser = new String();
-    String idNote = new String();
+    Integer idUser;
+    Integer idNote;
     String mNameString = new String();
     String mTextString = new String();
 
@@ -28,15 +30,16 @@ public class Note extends AppCompatActivity {
         setContentView(R.layout.activity_note);
 
         type = getIntent().getStringExtra("type");
-        idUser = getIntent().getStringExtra("id_user");
-        idNote = getIntent().getStringExtra("id_note");
+        idUser = Integer.valueOf(getIntent().getStringExtra("id_user"));
 
-        if (type == "edit") {
-            loadData();
+
+        if (type.equals("edit")) {
+            idNote = Integer.valueOf(getIntent().getStringExtra("id_note"));
+            loadData(idNote);
         }
     }
 
-    private void loadData() {
+    private void loadData(Integer idNote) {
         mDBHelper = new NotePadesDBHelper(this);
 
         SQLiteDatabase db = mDBHelper.getWritableDatabase();
@@ -44,53 +47,49 @@ public class Note extends AppCompatActivity {
         EditText mText = (EditText)findViewById(R.id.editText4);
 
         String mQuery = "SELECT * FROM " + DataBase.Notes.TABLE_NAME + " WHERE "
-                + DataBase.Notes.USER_ID + " = " + idUser + " AND "
-                + DataBase.Notes.NOTE_ID + " = " + idNote;
-
+                + DataBase.Notes.USER_ID + " = " + idUser.toString() + " AND "
+                + DataBase.Notes._ID + " = " + idNote.toString();
         Cursor cursor = db.rawQuery(mQuery, null);
 
         try {
+            int nameColumnIndex = cursor.getColumnIndex(DataBase.Notes.COLUMN_NAME);
             int textColumnIndex = cursor.getColumnIndex(DataBase.Notes.COLUMN_TEXT);
 
             while (cursor.moveToNext()) {
+                String currentName = cursor.getString(nameColumnIndex);
                 String currentText = cursor.getString(textColumnIndex);
+
+                mName.setText(currentName);
                 mText.setText(currentText);
             }
         } finally {
             cursor.close();
+            db.close();
         }
     }
 
     private void newNote() {
-        mDBHelper = new NotePadesDBHelper(this);
-
-        SQLiteDatabase db = mDBHelper.getWritableDatabase();
         EditText mName = (EditText)findViewById(R.id.editName);
         EditText mText = (EditText)findViewById(R.id.editText4);
 
         mNameString = mName.getText().toString().trim();
         mTextString = mText.getText().toString().trim();
 
-        ContentValues values = new ContentValues();
-        values.put(DataBase.Notepads.COLUMN_NAME, mNameString);
-        values.put(DataBase.Notepads.USER_ID, idUser);
-        values.put(DataBase.Notepads.COLUMN_DATE, "toDay");
-
-        long newRowId = db.insert(DataBase.Notepads.TABLE_NAME, null, values);
-
-        ContentValues values2 = new ContentValues();
-        values2.put(DataBase.Notes.NOTE_ID, newRowId);
-        values2.put(DataBase.Notes.USER_ID, idUser);
-        values2.put(DataBase.Notes.COLUMN_TEXT, mTextString);
-        values2.put(DataBase.Notes.COLUMN_DATE, "Today");
-
-        long newRowId2 = db.insert(DataBase.Notes.TABLE_NAME, null, values2);
-        if (newRowId2 == -1) {
-            Toast.makeText(this, "Ошибка", Toast.LENGTH_SHORT).show();
+        if ((mNameString.isEmpty())||(mTextString.isEmpty())){
+            Toast.makeText(this, "Нельзя добавлять пустые записи!", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, "Создан под номером" + newRowId2, Toast.LENGTH_SHORT).show();
+            Notes mNote = new Notes();
+
+            long idNote = mNote.addNote(this, idUser, mNameString, mTextString);
+
+            if (idNote == -1) {
+                Toast.makeText(this, "Ошибка записи", Toast.LENGTH_SHORT).show();
+            }
         }
 
+        Intent intent = new Intent(Note.this, ListNotes.class);
+        intent.putExtra("id_user", idUser.toString());
+        startActivity(intent);
     }
 
 

@@ -33,7 +33,8 @@
             android:inputType="textMultiLine"
             android:ems="10"
             android:id="@+id/editText4"
-            android:layout_weight="1.00" />
+            android:layout_weight="1.00"
+            android:gravity="top"/>
 
         <Button
             android:text="Сохранить"

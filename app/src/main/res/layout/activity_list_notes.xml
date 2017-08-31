@@ -22,7 +22,7 @@
         <ListView
             android:layout_width="match_parent"
             android:layout_height="358dp"
-            android:layout_weight="0.99"
+            android:layout_weight="0.78"
             android:id="@+id/listNotes" />
 
         <Button

@@ -2,121 +2,139 @@
 <items version="2" >
 
     <item
-        is-multidex="false"
-        jar="/Users/aydar/AndroidStudioProjects/notepads/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.4.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="8e673cdfadd8f2d98fdb2fda2285c30f6e449782">
-        <dex dex="/Users/aydar/AndroidStudioProjects/notepads/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-basement-8.4.0_d81b0cf6111b8733d94f871c349d5407595161ef.jar" />
-    </item>
-    <item
-        is-multidex="false"
+        is-multidex="true"
         jar="/Users/aydar/AndroidStudioProjects/notepads/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.1.0/jars/classes.jar"
-        jumboMode="false"
+        jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="e79aa3d9a16f8c9f16377c0608de70a8f31e5d80">
-        <dex dex="/Users/aydar/AndroidStudioProjects/notepads/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-25.1.0_22fa3bfdb0abf360bf8974c7866d4b2c01f09873.jar" />
+        <dex dex="/Users/aydar/AndroidStudioProjects/notepads/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-25.1.0_22fa3bfdb0abf360bf8974c7866d4b2c01f09873/classes.dex" />
     </item>
     <item
-        is-multidex="false"
+        is-multidex="true"
         jar="/Users/aydar/AndroidStudioProjects/notepads/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.1.0/jars/classes.jar"
-        jumboMode="false"
+        jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="2a53c4f3518116b8c6aee0e477233f0f7da8616f">
-        <dex dex="/Users/aydar/AndroidStudioProjects/notepads/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-25.1.0_6b071a70b14215e28cc69681d070d595e34400fa.jar" />
+        <dex dex="/Users/aydar/AndroidStudioProjects/notepads/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-fragment-25.1.0_6b071a70b14215e28cc69681d070d595e34400fa/classes.dex" />
     </item>
     <item
-        is-multidex="false"
+        is-multidex="true"
         jar="/Users/aydar/AndroidStudioProjects/notepads/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/jars/classes.jar"
-        jumboMode="false"
+        jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="1630658fbc2d222b988603c27b4a4249586fbfe7">
-        <dex dex="/Users/aydar/AndroidStudioProjects/notepads/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-25.1.0_4c88635e09f0cf8693eff8d3bad9fe007817df2b.jar" />
+        <dex dex="/Users/aydar/AndroidStudioProjects/notepads/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-25.1.0_4c88635e09f0cf8693eff8d3bad9fe007817df2b/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/Users/aydar/AndroidStudioProjects/notepads/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/8.4.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="65d086ee9daaf87b5af62ad24471edafa433354c">
-        <dex dex="/Users/aydar/AndroidStudioProjects/notepads/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-appindexing-8.4.0_3f108c3d42ae13435352673b4878a8ebdc54509f.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/aydar/AndroidStudioProjects/notepads/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.1.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="aee64634871d88a419d59eb743c1258a60f19700">
-        <dex dex="/Users/aydar/AndroidStudioProjects/notepads/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-25.1.0_ce36fd76a554ee4c8b53bfcf1e690f5ca6e5b0cd.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/aydar/AndroidStudioProjects/notepads/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.1.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="ca3c7aa31e2726a400a6e552b93cb9f63c9a1e6d">
-        <dex dex="/Users/aydar/AndroidStudioProjects/notepads/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-25.1.0_75e5fac081cee3ec0cc2e3b40149d71cf29f6aeb.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/aydar/AndroidStudioProjects/notepads/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.1.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="/Users/aydar/AndroidStudioProjects/notepads/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-25.1.0_1992eec32c052c976dc7b1541a3011f44040f19d.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/aydar/AndroidStudioProjects/notepads/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.1.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="0a0ef86b7fa568a52bf6214a0326ca1f1d618da7">
-        <dex dex="/Users/aydar/AndroidStudioProjects/notepads/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-25.1.0_cc6ec2bc9572abe8e9c1e48d48c62046f84710a1.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/aydar/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.1.0/support-annotations-25.1.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="64cb6b229a8bdfd907bc8dd46839a0053e4c018d">
-        <dex dex="/Users/aydar/AndroidStudioProjects/notepads/app/build/intermediates/pre-dexed/debug/support-annotations-25.1.0_1101c457aee1ef3f846383ada1e8fc91131fb9e7.jar" />
-    </item>
-    <item
-        is-multidex="false"
+        is-multidex="true"
         jar="/Users/aydar/AndroidStudioProjects/notepads/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/8.4.0/jars/classes.jar"
-        jumboMode="false"
+        jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="fef2b3e4b6b1b0e5fe7b69fa137a5fa55a3182ab">
-        <dex dex="/Users/aydar/AndroidStudioProjects/notepads/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-base-8.4.0_2f275dc9bd2184ca5ec2d8f02b3acdad493a6d55.jar" />
+        <dex dex="/Users/aydar/AndroidStudioProjects/notepads/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-base-8.4.0_2f275dc9bd2184ca5ec2d8f02b3acdad493a6d55/classes.dex" />
     </item>
     <item
-        is-multidex="false"
+        is-multidex="true"
+        jar="/Users/aydar/AndroidStudioProjects/notepads/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.4.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="8e673cdfadd8f2d98fdb2fda2285c30f6e449782">
+        <dex dex="/Users/aydar/AndroidStudioProjects/notepads/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-basement-8.4.0_d81b0cf6111b8733d94f871c349d5407595161ef/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/aydar/AndroidStudioProjects/notepads/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.1.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ca3c7aa31e2726a400a6e552b93cb9f63c9a1e6d">
+        <dex dex="/Users/aydar/AndroidStudioProjects/notepads/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-compat-25.1.0_75e5fac081cee3ec0cc2e3b40149d71cf29f6aeb/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/aydar/AndroidStudioProjects/notepads/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.1.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/aydar/AndroidStudioProjects/notepads/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-25.1.0_1992eec32c052c976dc7b1541a3011f44040f19d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/aydar/AndroidStudioProjects/notepads/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.1.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="aee64634871d88a419d59eb743c1258a60f19700">
+        <dex dex="/Users/aydar/AndroidStudioProjects/notepads/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-ui-25.1.0_ce36fd76a554ee4c8b53bfcf1e690f5ca6e5b0cd/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/aydar/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.1.0/support-annotations-25.1.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="64cb6b229a8bdfd907bc8dd46839a0053e4c018d">
+        <dex dex="/Users/aydar/AndroidStudioProjects/notepads/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-25.1.0_1101c457aee1ef3f846383ada1e8fc91131fb9e7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/aydar/AndroidStudioProjects/notepads/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.1.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0a0ef86b7fa568a52bf6214a0326ca1f1d618da7">
+        <dex dex="/Users/aydar/AndroidStudioProjects/notepads/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-utils-25.1.0_cc6ec2bc9572abe8e9c1e48d48c62046f84710a1/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/aydar/AndroidStudioProjects/notepads/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.1.0/jars/classes.jar"
-        jumboMode="false"
+        jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="f02263e35e52668dd17b73bf961437e3d562b35f">
-        <dex dex="/Users/aydar/AndroidStudioProjects/notepads/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-25.1.0_b116e15b3256807576adb19d6c9b4e0e1d14a009.jar" />
+        <dex dex="/Users/aydar/AndroidStudioProjects/notepads/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-media-compat-25.1.0_b116e15b3256807576adb19d6c9b4e0e1d14a009/classes.dex" />
     </item>
     <item
-        is-multidex="false"
+        is-multidex="true"
+        jar="/Users/aydar/AndroidStudioProjects/notepads/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="9f5c61c8aa150419c0d055c92b7770ee52c44f98">
+        <dex dex="/Users/aydar/AndroidStudioProjects/notepads/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_248929704501ebb4fa0564283fd80c7de3efef95/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/aydar/AndroidStudioProjects/notepads/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.1.0/jars/classes.jar"
-        jumboMode="false"
+        jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="6fb6ac3e8d3b9013819920d9ea11f3803c4c0033">
-        <dex dex="/Users/aydar/AndroidStudioProjects/notepads/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-25.1.0_3dcb1ed2d0daa0c528d97904faf2a6f28448914e.jar" />
+        <dex dex="/Users/aydar/AndroidStudioProjects/notepads/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-25.1.0_3dcb1ed2d0daa0c528d97904faf2a6f28448914e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/aydar/AndroidStudioProjects/notepads/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/8.4.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="65d086ee9daaf87b5af62ad24471edafa433354c">
+        <dex dex="/Users/aydar/AndroidStudioProjects/notepads/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-appindexing-8.4.0_3f108c3d42ae13435352673b4878a8ebdc54509f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/aydar/AndroidStudioProjects/notepads/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="80ca4c0375820496d3953c9ab8a8364ea6ea9706">
+        <dex dex="/Users/aydar/AndroidStudioProjects/notepads/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_87879551f61f38c55abcdddedb7bdff8e9ae22b3/classes.dex" />
     </item>
 
 </items>

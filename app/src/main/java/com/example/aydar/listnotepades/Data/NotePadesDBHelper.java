@@ -14,7 +14,7 @@ public class NotePadesDBHelper extends SQLiteOpenHelper{
 
     private static final String DATABASE_NAME = "notepads.db";
 
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
 
     public NotePadesDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -29,13 +29,13 @@ public class NotePadesDBHelper extends SQLiteOpenHelper{
 
         db.execSQL(SQL_CREATE_USERS_TABLE);
 
-        String SQL_CREATE_NOTEPADS_TABLE = "CREATE TABLE IF NOT EXISTS " + DataBase.Notepads.TABLE_NAME + " ("
-                + DataBase.Notepads._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + DataBase.Notepads.USER_ID + " INTEGER, "
-                + DataBase.Notepads.COLUMN_NAME + " TEXT NOT NULL, "
-                + DataBase.Notepads.COLUMN_DATE + " TEXT NOT NULL);";
-
-        db.execSQL(SQL_CREATE_NOTEPADS_TABLE);
+//        String SQL_CREATE_NOTEPADS_TABLE = "CREATE TABLE IF NOT EXISTS " + DataBase.Notepads.TABLE_NAME + " ("
+//                + DataBase.Notepads._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+//                + DataBase.Notepads.USER_ID + " INTEGER, "
+//                + DataBase.Notepads.COLUMN_NAME + " TEXT NOT NULL, "
+//                + DataBase.Notepads.COLUMN_DATE + " TEXT NOT NULL);";
+//
+//        db.execSQL(SQL_CREATE_NOTEPADS_TABLE);
 
         String SQL_CREATE_NOTES_TABLE = "CREATE TABLE IF NOT EXISTS " + DataBase.Notes.TABLE_NAME + " ("
                 + DataBase.Notes._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "

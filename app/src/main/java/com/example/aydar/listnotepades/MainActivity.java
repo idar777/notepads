@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 Intent intent = new Intent(MainActivity.this, ListNotes.class);
                 intent.putExtra("test_user", "testtest");
-                intent.putExtra("id_user", idUser);
+                intent.putExtra("id_user", idUser.toString());
                 startActivity(intent);
             }
         } else {

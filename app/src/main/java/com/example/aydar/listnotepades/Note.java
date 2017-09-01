@@ -23,6 +23,7 @@ public class Note extends AppCompatActivity {
     Integer idNote;
     String mNameString = new String();
     String mTextString = new String();
+    Notes mNote = new Notes();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,19 +69,11 @@ public class Note extends AppCompatActivity {
         }
     }
 
-    private void newNote() {
-        EditText mName = (EditText)findViewById(R.id.editName);
-        EditText mText = (EditText)findViewById(R.id.editText4);
-
-        mNameString = mName.getText().toString().trim();
-        mTextString = mText.getText().toString().trim();
-
-        if ((mNameString.isEmpty())||(mTextString.isEmpty())){
+    private void newNote(String mName, String mText) {
+        if ((mName.isEmpty())||(mText.isEmpty())){
             Toast.makeText(this, "Нельзя добавлять пустые записи!", Toast.LENGTH_SHORT).show();
         } else {
-            Notes mNote = new Notes();
-
-            long idNote = mNote.addNote(this, idUser, mNameString, mTextString);
+            long idNote = mNote.addNote(this, idUser, mName, mText);
 
             if (idNote == -1) {
                 Toast.makeText(this, "Ошибка записи", Toast.LENGTH_SHORT).show();
@@ -94,6 +87,17 @@ public class Note extends AppCompatActivity {
 
 
     public void saveContentNote(View view) {
-        newNote();
+        EditText mName = (EditText)findViewById(R.id.editName);
+        EditText mText = (EditText)findViewById(R.id.editText4);
+
+        mNameString = mName.getText().toString().trim();
+        mTextString = mText.getText().toString().trim();
+
+        if (type.equals("edit")) {
+            Toast.makeText(this, "Изменение", Toast.LENGTH_SHORT).show();
+            mNote.changeNote(this, idNote, mNameString, mTextString);
+        } else {
+            newNote(mNameString, mTextString);
+        }
     }
 }

@@ -3,6 +3,7 @@ package com.example.aydar.listnotepades.Data;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.provider.ContactsContract;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -36,6 +37,17 @@ public class Notes {
         return newRowId;
     }
     //Изменение блокнота
+    public void changeNote(Context context, long idNote, String mName, String mText){
+        mDBHelper = new NotePadesDBHelper(context);
+        SQLiteDatabase db = mDBHelper.getWritableDatabase();
+
+        String mQuery = "UPDATE " + DataBase.Notes.TABLE_NAME + " SET " + DataBase.Notes.COLUMN_NAME + " = '" +
+                mName + "', " + DataBase.Notes.COLUMN_TEXT + " = '" + mText + "' WHERE " + DataBase.Notes._ID + " = " +
+                idNote;
+
+        Toast.makeText(context, mQuery, Toast.LENGTH_SHORT).show();
+        //db.execSQL(mQuery);
+    }
 
     //Просмотр списков блокнота
 }

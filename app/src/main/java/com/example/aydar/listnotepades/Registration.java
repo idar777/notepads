@@ -15,6 +15,8 @@ import com.example.aydar.listnotepades.Data.NotePadesDBHelper;
 import com.example.aydar.listnotepades.Data.Users;
 import com.example.aydar.listnotepades.R;
 
+import java.security.NoSuchAlgorithmException;
+
 public class Registration extends AppCompatActivity {
 
     @Override
@@ -23,7 +25,7 @@ public class Registration extends AppCompatActivity {
         setContentView(R.layout.activity_registration);
     }
 
-    public void AddUserClick(View view) {
+    public void AddUserClick(View view) throws NoSuchAlgorithmException {
 
         EditText mLogin = (EditText)findViewById(R.id.editText2);
         EditText mPassword = (EditText)findViewById(R.id.editText3);
@@ -31,8 +33,8 @@ public class Registration extends AppCompatActivity {
         String mLoginData = mLogin.getText().toString();
         Users usersWork = new Users();
 
-        if (usersWork.checkUserName(mLoginData)) {
-            if (usersWork.checkUserExists(this, mLoginData)) {
+        if (usersWork.checkUserName(mLogin.getText().toString()) & !(mPassword.toString().isEmpty())) {
+            if (usersWork.checkUserExists(this, Users.changeToMD5(mLoginData))) {
                 Toast.makeText(this, "Пользователь с данным e-mail уже существует", Toast.LENGTH_SHORT).show();
             } else {
                 NotePadesDBHelper mDBHelper = new NotePadesDBHelper(this);
@@ -40,8 +42,8 @@ public class Registration extends AppCompatActivity {
                 SQLiteDatabase db = mDBHelper.getWritableDatabase();
 
                 ContentValues values = new ContentValues();
-                values.put(DataBase.Users.COLUMN_LOGIN, mLogin.getText().toString().trim());
-                values.put(DataBase.Users.COLUMN_PASSWORD, mPassword.getText().toString().trim());
+                values.put(DataBase.Users.COLUMN_LOGIN, Users.changeToMD5(mLogin.getText().toString().trim()));
+                values.put(DataBase.Users.COLUMN_PASSWORD, Users.changeToMD5(mPassword.getText().toString().trim()));
 
                 long newRowId = db.insert(DataBase.Users.TABLE_NAME, null, values);
 

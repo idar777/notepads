@@ -9,15 +9,23 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.example.aydar.listnotepades.Data.DataBase;
 import com.example.aydar.listnotepades.Data.NotePadesDBHelper;
 import com.example.aydar.listnotepades.Data.Users;
+
+import static android.R.attr.data;
+import io.fabric.sdk.android.Fabric;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
     }
 
@@ -31,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void entrance(View view) {
+    public void entrance(View view) throws NoSuchAlgorithmException {
         EditText mLogin = (EditText)findViewById(R.id.editText2);
         EditText mPassword = (EditText)findViewById(R.id.editText3);
 
@@ -41,8 +49,8 @@ public class MainActivity extends AppCompatActivity {
 
         Users usersWork = new Users();
 
-        if (usersWork.checkUserName(mLogin.getText().toString())) {
-            Integer idUser = usersWork.checkUser(this, mLogin.getText().toString(), mPassword.getText().toString());
+        if (usersWork.checkUserName(mLogin.getText().toString()) & !(mPassword.toString().isEmpty())) {
+            Integer idUser = usersWork.checkUser(this, Users.changeToMD5(mLogin.getText().toString()), Users.changeToMD5(mPassword.getText().toString()));
             if (idUser.equals(0)){
                 Toast.makeText(this, "Доступ запрещен", Toast.LENGTH_SHORT).show();
             } else {

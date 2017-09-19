@@ -17,9 +17,6 @@ public class Notes {
 
     NotePadesDBHelper mDBHelper;
 
-    //Добавление блокнота
-
-    //Удаление блокнота
     public long addNote(Context context, Integer idUser,String mName, String mText){
         mDBHelper = new NotePadesDBHelper(context);
 
@@ -36,18 +33,24 @@ public class Notes {
         long newRowId = db.insert(DataBase.Notes.TABLE_NAME, null, values);
         return newRowId;
     }
-    //Изменение блокнота
+
     public void changeNote(Context context, long idNote, String mName, String mText){
         mDBHelper = new NotePadesDBHelper(context);
         SQLiteDatabase db = mDBHelper.getWritableDatabase();
 
-        String mQuery = "UPDATE " + DataBase.Notes.TABLE_NAME + " SET " + DataBase.Notes.COLUMN_NAME + " = '" +
-                mName + "', " + DataBase.Notes.COLUMN_TEXT + " = '" + mText + "' WHERE " + DataBase.Notes._ID + " = " +
+        String mQuery = "UPDATE " + DataBase.Notes.TABLE_NAME + " SET " + DataBase.Notes.COLUMN_NAME + " = \"" +
+                mName + "\", " + DataBase.Notes.COLUMN_TEXT + " = \"" + mText + "\" WHERE " + DataBase.Notes._ID + " = " +
                 idNote;
 
-        Toast.makeText(context, mQuery, Toast.LENGTH_SHORT).show();
-        //db.execSQL(mQuery);
+        db.execSQL(mQuery);
+
     }
 
-    //Просмотр списков блокнота
+    public void deleteNote(Context context, long idNote){
+        mDBHelper = new NotePadesDBHelper(context);
+        SQLiteDatabase db = mDBHelper.getWritableDatabase();
+
+        String mQuery = "DELETE FROM " + DataBase.Notes.TABLE_NAME + " WHERE " + DataBase.Notes._ID + " = " + idNote;
+        db.execSQL(mQuery);
+    }
 }

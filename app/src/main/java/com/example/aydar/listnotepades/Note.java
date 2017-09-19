@@ -79,10 +79,9 @@ public class Note extends AppCompatActivity {
                 Toast.makeText(this, "Ошибка записи", Toast.LENGTH_SHORT).show();
             }
         }
-
         Intent intent = new Intent(Note.this, ListNotes.class);
-        intent.putExtra("id_user", idUser.toString());
         startActivity(intent);
+        //onBackPressed();
     }
 
 
@@ -99,5 +98,22 @@ public class Note extends AppCompatActivity {
         } else {
             newNote(mNameString, mTextString);
         }
+        //onBackPressed();
+        Intent intent = new Intent(Note.this, ListNotes.class);
+        startActivity(intent);
+    }
+
+    public void deleteCurrentNote(View view) {
+        EditText mName = (EditText)findViewById(R.id.editName);
+        EditText mText = (EditText)findViewById(R.id.editText4);
+
+        mNameString = mName.getText().toString().trim();
+        mTextString = mText.getText().toString().trim();
+
+        mNote.deleteNote(this, idNote);
+        onBackPressed();
+        //Intent intent = new Intent(Note.this, ListNotes.class);
+        //intent.putExtra("refresh_data",  true);
+        //startActivity(intent);
     }
 }

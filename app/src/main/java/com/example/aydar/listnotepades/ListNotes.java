@@ -30,6 +30,7 @@ public class ListNotes extends AppCompatActivity {
 
     String idUser = new String();
     Integer posItem;
+    //Boolean mRefresh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

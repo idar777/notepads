@@ -15,10 +15,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Registration" />
+        <activity android:name=".Registration"
+            android:noHistory="false"/>
         <activity
             android:name=".DataBaseStructure"
-            android:exported="true" />
+            android:exported="true"
+            android:noHistory="true"/>
         <!--
  ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -27,8 +29,14 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity android:name=".ListNotes" />
-        <activity android:name=".Note"></activity>
+        <activity android:name=".ListNotes"
+            android:noHistory="false"/>
+        <activity android:name=".Note"
+            android:noHistory="false"></activity>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="c2c8a0e82aa9291e2bb73841e02ab6b3939385bd" />
     </application>
 
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

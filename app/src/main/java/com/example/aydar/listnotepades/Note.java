@@ -1,12 +1,15 @@
 package com.example.aydar.listnotepades;
 
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -19,7 +22,7 @@ public class Note extends AppCompatActivity {
     private NotePadesDBHelper mDBHelper;
 
     String type = new String();
-    Integer idUser;
+    String idUser;
     Integer idNote;
     String mNameString = new String();
     String mTextString = new String();
@@ -30,13 +33,18 @@ public class Note extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note);
 
+        Button bDelete = (Button)findViewById(R.id.button5);
+
         type = getIntent().getStringExtra("type");
-        idUser = Integer.valueOf(getIntent().getStringExtra("id_user"));
+        idUser = getIntent().getStringExtra("id_user");
 
 
         if (type.equals("edit")) {
             idNote = Integer.valueOf(getIntent().getStringExtra("id_note"));
             loadData(idNote);
+            bDelete.setEnabled(true);
+        } else {
+            bDelete.setEnabled(false);
         }
     }
 
@@ -48,7 +56,7 @@ public class Note extends AppCompatActivity {
         EditText mText = (EditText)findViewById(R.id.editText4);
 
         String mQuery = "SELECT * FROM " + DataBase.Notes.TABLE_NAME + " WHERE "
-                + DataBase.Notes.USER_ID + " = " + idUser.toString() + " AND "
+                + DataBase.Notes.USER_ID + " = " + idUser + " AND "
                 + DataBase.Notes._ID + " = " + idNote.toString();
         Cursor cursor = db.rawQuery(mQuery, null);
 
@@ -79,9 +87,6 @@ public class Note extends AppCompatActivity {
                 Toast.makeText(this, "Ошибка записи", Toast.LENGTH_SHORT).show();
             }
         }
-        Intent intent = new Intent(Note.this, ListNotes.class);
-        startActivity(intent);
-        //onBackPressed();
     }
 
 
@@ -92,15 +97,20 @@ public class Note extends AppCompatActivity {
         mNameString = mName.getText().toString().trim();
         mTextString = mText.getText().toString().trim();
 
-        if (type.equals("edit")) {
-            Toast.makeText(this, "Изменение", Toast.LENGTH_SHORT).show();
-            mNote.changeNote(this, idNote, mNameString, mTextString);
+        if (!mNameString.isEmpty() & !mTextString.isEmpty()){
+            if (type.equals("edit")) {
+                mNote.changeNote(this, idNote, mNameString, mTextString);
+            } else {
+                newNote(mNameString, mTextString);
+            }
+            Intent intent = new Intent(Note.this, ListNotes.class);
+            intent.putExtra("id_user", idUser);
+            startActivity(intent);
         } else {
-            newNote(mNameString, mTextString);
+            Toast.makeText(this, "Нельзя вводить пустые значения!", Toast.LENGTH_SHORT).show();
         }
-        //onBackPressed();
-        Intent intent = new Intent(Note.this, ListNotes.class);
-        startActivity(intent);
+
+
     }
 
     public void deleteCurrentNote(View view) {
@@ -111,9 +121,16 @@ public class Note extends AppCompatActivity {
         mTextString = mText.getText().toString().trim();
 
         mNote.deleteNote(this, idNote);
-        onBackPressed();
-        //Intent intent = new Intent(Note.this, ListNotes.class);
-        //intent.putExtra("refresh_data",  true);
-        //startActivity(intent);
+
+        Intent intent = new Intent(Note.this, ListNotes.class);
+        intent.putExtra("id_user", idUser);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(Note.this, ListNotes.class);
+        intent.putExtra("id_user", idUser);
+        startActivity(intent);
     }
 }

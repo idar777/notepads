@@ -1,8 +1,10 @@
 package com.example.aydar.listnotepades;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -28,16 +30,16 @@ public class ListNotes extends AppCompatActivity {
 
     private ArrayAdapter mAdapter;
 
-    String idUser = new String();
+    String idUser = "0";
+
     Integer posItem;
-    //Boolean mRefresh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_notes);
 
-        ListView listViewNotes2 = (ListView)findViewById(R.id.listNotes);
+        ListView listViewNotes2 = (ListView) findViewById(R.id.listNotes);
 
         idUser = getIntent().getStringExtra("id_user");
 
@@ -49,8 +51,7 @@ public class ListNotes extends AppCompatActivity {
 
         listViewNotes2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View itemClicked, int position,
-                                    long id) {
+            public void onItemClick(AdapterView<?> parent, View itemClicked, int position, long id) {
                 posItem = position;
                 Intent intent = new Intent(ListNotes.this, Note.class);
                 intent.putExtra("id_user", idUser);
@@ -71,24 +72,29 @@ public class ListNotes extends AppCompatActivity {
         String[] projectionNotes = {
                 DataBase.Notes.COLUMN_NAME
         };
-
-        Cursor cursor = db.query(DataBase.Notes.TABLE_NAME,
-                projectionNotes,
-                "user_id = ?",
-                new String[] {idUser},
-                null,
-                null,
-                null);
-        if (cursor.getCount() != 0) {
-                try {
-                    int nameIndex = cursor.getColumnIndex(DataBase.Notes.COLUMN_NAME);
-                    while (cursor.moveToNext()) {
-                        listNotes.add(cursor.getString(nameIndex).toString().trim());
-                    }
-                } finally {
-                    cursor.close();
-                    db.close();
+        Cursor cursor = null;
+        try {
+            cursor = db.query(DataBase.Notes.TABLE_NAME,
+                    projectionNotes,
+                    "user_id = ?",
+                    new String[]{idUser},
+                    null,
+                    null,
+                    null);
+            if (cursor.getCount() != 0) {
+                int nameIndex = cursor.getColumnIndex(DataBase.Notes.COLUMN_NAME);
+                while (cursor.moveToNext()) {
+                    listNotes.add(cursor.getString(nameIndex).toString().trim());
                 }
+
+            }
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+            if(db!=null){
+                db.close();
+            }
         }
     }
 
@@ -114,7 +120,7 @@ public class ListNotes extends AppCompatActivity {
 
         if (cursor.getCount() != 0) {
             try {
-                cursor.move(position+1);
+                cursor.move(position + 1);
                 int idIndex = cursor.getColumnIndex(DataBase.Notes._ID);
                 idNote = cursor.getString(idIndex);
             } finally {
@@ -130,5 +136,31 @@ public class ListNotes extends AppCompatActivity {
         intent.putExtra("id_user", idUser);
         intent.putExtra("type", "new");
         startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        openQuitDialog();
+    }
+
+    private void openQuitDialog() {
+        AlertDialog.Builder quitDialog = new AlertDialog.Builder(
+                ListNotes.this);
+        quitDialog.setTitle("Выход: Вы уверены?");
+
+        quitDialog.setPositiveButton("Да!", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+
+        quitDialog.setNegativeButton("Нет", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+
+        quitDialog.show();
     }
 }

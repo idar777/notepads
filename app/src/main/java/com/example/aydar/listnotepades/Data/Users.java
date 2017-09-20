@@ -26,7 +26,7 @@ public class Users {
         SQLiteDatabase db = mDBHelper.getReadableDatabase();
 
         String mQuery = "SELECT * FROM " + DataBase.Users.TABLE_NAME + " WHERE "
-                + DataBase.Users.COLUMN_LOGIN + " = \"" + Users.changeToMD5(mLogin) + "\"";
+                + DataBase.Users.COLUMN_LOGIN + " = \"" + mLogin + "\"";
 
         Cursor cursor = db.rawQuery(mQuery, null);
 

@@ -17,7 +17,7 @@ public class Notes {
 
     NotePadesDBHelper mDBHelper;
 
-    public long addNote(Context context, Integer idUser,String mName, String mText){
+    public long addNote(Context context, String idUser,String mName, String mText){
         mDBHelper = new NotePadesDBHelper(context);
 
         SQLiteDatabase db = mDBHelper.getWritableDatabase();
@@ -31,6 +31,7 @@ public class Notes {
         values.put(DataBase.Notes.COLUMN_DATE, "Today");
 
         long newRowId = db.insert(DataBase.Notes.TABLE_NAME, null, values);
+        db.close();
         return newRowId;
     }
 

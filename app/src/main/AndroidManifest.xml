@@ -8,7 +8,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -16,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Registration"
-            android:noHistory="false"/>
+            android:noHistory="true"/>
         <activity
             android:name=".DataBaseStructure"
             android:exported="true"
@@ -30,9 +31,9 @@
             android:value="@integer/google_play_services_version" />
 
         <activity android:name=".ListNotes"
-            android:noHistory="false"/>
+            android:noHistory="true"/>
         <activity android:name=".Note"
-            android:noHistory="false"></activity>
+            android:noHistory="true"></activity>
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="c2c8a0e82aa9291e2bb73841e02ab6b3939385bd" />

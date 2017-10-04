@@ -29,14 +29,6 @@ public class NotePadesDBHelper extends SQLiteOpenHelper{
 
         db.execSQL(SQL_CREATE_USERS_TABLE);
 
-//        String SQL_CREATE_NOTEPADS_TABLE = "CREATE TABLE IF NOT EXISTS " + DataBase.Notepads.TABLE_NAME + " ("
-//                + DataBase.Notepads._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-//                + DataBase.Notepads.USER_ID + " INTEGER, "
-//                + DataBase.Notepads.COLUMN_NAME + " TEXT NOT NULL, "
-//                + DataBase.Notepads.COLUMN_DATE + " TEXT NOT NULL);";
-//
-//        db.execSQL(SQL_CREATE_NOTEPADS_TABLE);
-
         String SQL_CREATE_NOTES_TABLE = "CREATE TABLE IF NOT EXISTS " + DataBase.Notes.TABLE_NAME + " ("
                 + DataBase.Notes._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + DataBase.Notes.USER_ID + " INTEGER, "
@@ -51,7 +43,6 @@ public class NotePadesDBHelper extends SQLiteOpenHelper{
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + DataBase.Users.TABLE_NAME);
-        db.execSQL("DROP TABLE IF EXISTS " + DataBase.Notepads.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + DataBase.Notes.TABLE_NAME);
 
         // Создаём новую таблицу

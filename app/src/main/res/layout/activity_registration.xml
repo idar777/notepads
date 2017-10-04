@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.aydar.listnotepades.Registration">
+    tools:context="com.example.aydar.listnotepades.RegistrationActivity">
 
     <LinearLayout
         android:orientation="vertical"
@@ -19,41 +19,43 @@
         android:layout_alignParentStart="true">
 
         <TextView
-            android:text="РЕГИСТРАЦИЯ"
+            android:text="@string/registration_activity_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView3"
+            android:id="@+id/textViewActivityName"
             android:textSize="18sp"
             android:textAlignment="center"
-            android:textStyle="normal|bold" />
+            android:textStyle="normal|bold"
+            android:gravity="center"/>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="@dimen/block_height">
 
             <LinearLayout
-                android:layout_width="100dp"
+                android:layout_width="@dimen/text_block_width"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView5"
-                    android:layout_width="100dp"
-                    android:layout_height="40dp"
-                    android:text="Логин"
+                    android:id="@+id/textViewLogin2"
+                    android:layout_width="@dimen/text_view_width"
+                    android:layout_height="@dimen/text_view_height"
+                    android:text="@string/login"
                     android:textSize="18sp"
                     android:textStyle="normal|bold"
+                    android:layout_weight="0.5"
                     android:gravity="center_vertical"/>
 
                 <TextView
-                    android:id="@+id/textView6"
-                    android:layout_width="100dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1"
-                    android:text="Пароль"
+                    android:id="@+id/textViewPassword2"
+                    android:layout_width="@dimen/text_view_width"
+                    android:layout_height="@dimen/text_view_height"
+                    android:text="@string/password"
                     android:textSize="18sp"
                     android:textStyle="normal|bold"
+                    android:layout_weight="0.5"
                     android:gravity="center_vertical"/>
             </LinearLayout>
 
@@ -63,33 +65,33 @@
                 android:orientation="vertical">
 
                 <EditText
-                    android:id="@+id/editText2"
-                    android:layout_width="150dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1"
+                    android:id="@+id/editTextLogin2"
+                    android:layout_width="@dimen/edit_text_width"
+                    android:layout_height="@dimen/edit_text_height"
                     android:ems="10"
-                    android:hint="Логин"
+                    android:hint="@string/login"
+                    android:layout_weight="0.5"
                     android:inputType="textPersonName" />
 
                 <EditText
-                    android:id="@+id/editText3"
-                    android:layout_width="150dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1"
+                    android:id="@+id/editTextPassword2"
+                    android:layout_width="@dimen/edit_text_width"
+                    android:layout_height="@dimen/edit_text_height"
                     android:ems="10"
-                    android:hint="Пароль"
+                    android:hint="@string/password"
+                    android:layout_weight="0.5"
                     android:inputType="textPassword" />
             </LinearLayout>
 
         </LinearLayout>
 
         <Button
-            android:text="Подтвердить"
+            android:text="@string/button_confirm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/button3"
+            android:id="@+id/buttonConfirm"
             android:layout_gravity="center"
-            android:onClick="AddUserClick"/>
+            android:onClick="addUserClick"/>
 
     </LinearLayout>
 </RelativeLayout>

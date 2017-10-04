@@ -1,5 +1,7 @@
 package com.example.aydar.listnotepades;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -22,17 +24,32 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.StringTokenizer;
 
-public class ListNotes extends AppCompatActivity {
+public class ListNotesActivity extends Activity {
 
     private NotePadesDBHelper mDBHelper;
 
-    ArrayList<String> listNotes = new ArrayList();
+    private ArrayList<String> listNotes = new ArrayList();
 
     private ArrayAdapter mAdapter;
 
-    String idUser = "0";
+    private String idUser;
 
-    Integer posItem;
+    private Integer posItem;
+
+    public static final Intent newIntent(Context context, String idUser, String editType, String noteId) {
+        Intent intent = new Intent(context, NoteActivity.class);
+        intent.putExtra(StartActivity.USER_ID, idUser);
+        intent.putExtra(StartActivity.OPEN_TYPE, editType);
+        intent.putExtra(StartActivity.NOTE_ID, noteId);
+        return intent;
+    }
+
+    public static final Intent newIntent(Context context, String idUser, String editType) {
+        Intent intent = new Intent(context, NoteActivity.class);
+        intent.putExtra(StartActivity.USER_ID, idUser);
+        intent.putExtra(StartActivity.OPEN_TYPE, editType);
+        return intent;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +58,7 @@ public class ListNotes extends AppCompatActivity {
 
         ListView listViewNotes2 = (ListView) findViewById(R.id.listNotes);
 
-        idUser = getIntent().getStringExtra("id_user");
+        idUser = getIntent().getStringExtra(StartActivity.USER_ID);
 
         setNotesContent();
 
@@ -53,11 +70,7 @@ public class ListNotes extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View itemClicked, int position, long id) {
                 posItem = position;
-                Intent intent = new Intent(ListNotes.this, Note.class);
-                intent.putExtra("id_user", idUser);
-                intent.putExtra("type", "edit");
-                intent.putExtra("id_note", getIDNote(posItem));
-                startActivity(intent);
+                startActivity(newIntent(ListNotesActivity.this, idUser, StartActivity.EDIT_TYPE, getIDNote(posItem)));
             }
         });
 
@@ -132,10 +145,7 @@ public class ListNotes extends AppCompatActivity {
     }
 
     public void addNewNote(View view) {
-        Intent intent = new Intent(ListNotes.this, Note.class);
-        intent.putExtra("id_user", idUser);
-        intent.putExtra("type", "new");
-        startActivity(intent);
+        startActivity(newIntent(ListNotesActivity.this,idUser, StartActivity.NEW_TYPE));
     }
 
     @Override
@@ -145,17 +155,17 @@ public class ListNotes extends AppCompatActivity {
 
     private void openQuitDialog() {
         AlertDialog.Builder quitDialog = new AlertDialog.Builder(
-                ListNotes.this);
-        quitDialog.setTitle("Выход: Вы уверены?");
+                ListNotesActivity.this);
+        quitDialog.setTitle(R.string.escape_text);
 
-        quitDialog.setPositiveButton("Да!", new DialogInterface.OnClickListener() {
+        quitDialog.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 finish();
             }
         });
 
-        quitDialog.setNegativeButton("Нет", new DialogInterface.OnClickListener() {
+        quitDialog.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
             }

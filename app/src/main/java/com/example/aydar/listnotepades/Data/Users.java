@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import com.example.aydar.listnotepades.Data.NotePadesDBHelper;
-import com.example.aydar.listnotepades.MainActivity;
+import com.example.aydar.listnotepades.StartActivity;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;

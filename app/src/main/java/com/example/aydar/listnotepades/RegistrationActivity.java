@@ -1,5 +1,6 @@
 package com.example.aydar.listnotepades;
 
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -17,7 +18,7 @@ import com.example.aydar.listnotepades.R;
 
 import java.security.NoSuchAlgorithmException;
 
-public class Registration extends AppCompatActivity {
+public class RegistrationActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,17 +26,17 @@ public class Registration extends AppCompatActivity {
         setContentView(R.layout.activity_registration);
     }
 
-    public void AddUserClick(View view) throws NoSuchAlgorithmException {
+    public void addUserClick(View view) throws NoSuchAlgorithmException {
 
-        EditText mLogin = (EditText)findViewById(R.id.editText2);
-        EditText mPassword = (EditText)findViewById(R.id.editText3);
+        EditText mLogin = (EditText)findViewById(R.id.editTextLogin2);
+        EditText mPassword = (EditText)findViewById(R.id.editTextPassword2);
 
         String mLoginData = mLogin.getText().toString();
         Users usersWork = new Users();
 
         if (usersWork.checkUserName(mLogin.getText().toString()) & !(mPassword.toString().isEmpty())) {
             if (usersWork.checkUserExists(this, Users.changeToMD5(mLoginData))) {
-                Toast.makeText(this, "Пользователь с данным e-mail уже существует", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.error_login_exists, Toast.LENGTH_SHORT).show();
             } else {
                 NotePadesDBHelper mDBHelper = new NotePadesDBHelper(this);
 
@@ -49,12 +50,10 @@ public class Registration extends AppCompatActivity {
 
                 db.close();
 
-                Intent intent = new Intent(Registration.this, ListNotes.class);
-                intent.putExtra("id_user", String.valueOf(newRowId));
-                startActivity(intent);
+                startActivity(StartActivity.newIntent(RegistrationActivity.this,String.valueOf(newRowId)));
             }
         } else {
-            Toast.makeText(this, "Логин должен иметь формат e-mail: *@*.*", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.error_incorrect_format_login, Toast.LENGTH_SHORT).show();
         }
     }
 }

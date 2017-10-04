@@ -24,20 +24,20 @@ import java.util.ArrayList;
 public class DataBaseStructure extends AppCompatActivity {
 
     private NotePadesDBHelper mDBHelper;
-    ArrayList<String> listUsers = new ArrayList<>();
+    private ArrayList<String> listUsers = new ArrayList<>();
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
-    private GoogleApiClient client;
+//    private GoogleApiClient client;
     public ArrayAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data_base_structure);
-        ListView mListView = (ListView)findViewById(R.id.list1);
+        ListView mListView = (ListView)findViewById(R.id.listDataBase);
         databaseView();
 
 
@@ -83,37 +83,6 @@ public class DataBaseStructure extends AppCompatActivity {
         } finally {
             cursor.close();
         }
-
-//        listUsers.add("notepads --------------------------");
-//
-//        String[] projectionUsers2 = {
-//                DataBase.Notepads._ID,
-//                DataBase.Notepads.USER_ID,
-//                DataBase.Notepads.COLUMN_NAME
-//        };
-//
-//        Cursor cursor2 = db.query(DataBase.Notepads.TABLE_NAME,
-//                projectionUsers2,
-//                null,
-//                null,
-//                null,
-//                null,
-//                null);
-//
-//        try {
-//            int loginColumnIndex = cursor2.getColumnIndex(DataBase.Notepads.USER_ID);
-//            int passwordColumnIndex = cursor2.getColumnIndex(DataBase.Notepads.COLUMN_NAME);
-//            int idColumnIndex = cursor2.getColumnIndex(DataBase.Notepads._ID);
-//
-//            while (cursor2.moveToNext()) {
-//                Integer currentLogin = cursor2.getInt(loginColumnIndex);
-//                String currentPassword = cursor2.getString(passwordColumnIndex);
-//                Integer currentID = cursor2.getInt(idColumnIndex);
-//                listUsers.add(currentID.toString() + " " + currentLogin.toString() + "  " + currentPassword);
-//            }
-//        } finally {
-//            cursor2.close();
-//        }
 
         listUsers.add("notes --------------------------");
 

@@ -1,3 +1,26 @@
 <resources>
     <string name="app_name">ListNotePades</string>
+    <string name="error_incorrect_format_login">"Логин должен иметь формат e-mail: *@*.*"</string>
+    <string name="error_empty_data">"Нельзя вводить пустые значения!"</string>
+    <string name="error_login_exists">"Пользователь с данным e-mail уже существует"</string>
+    <string name="access_is_denied">"Доступ запрещен"</string>
+    <string name="name_of_encryption">MD5</string>
+    <string name="escape_text">"Выход: Вы уверены?"</string>
+    <string name="id_user_transfer">"id_user"</string>
+    <string name="login">"Логин"</string>
+    <string name="password">"Пароль"</string>
+    <string name="entrance_activity_name">ВХОД</string>
+    <string name="button_registration_name">Регистрация</string>
+    <string name="button_entrance_name">Подтвердить</string>
+    <string name="button_database_look_name">Просмотр БД</string>
+    <string name="button_confirm">"Подтвердить"</string>
+    <string name="name">"Наименование"</string>
+    <string name="save">"Сохранить"</string>
+    <string name="delete">"Удалить"</string>
+    <string name="create">"Создать"</string>
+    <string name="registration_activity_name">РЕГИСТРАЦИЯ</string>
+    <string name="edit_type">"edit"</string>
+    <string name="new_type">"new"</string>
+    <string name="yes">Да!</string>
+    <string name="no">Нет!</string>
 </resources>

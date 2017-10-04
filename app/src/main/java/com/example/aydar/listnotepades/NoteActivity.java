@@ -1,5 +1,6 @@
 package com.example.aydar.listnotepades;
 
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,30 +18,31 @@ import com.example.aydar.listnotepades.Data.DataBase;
 import com.example.aydar.listnotepades.Data.NotePadesDBHelper;
 import com.example.aydar.listnotepades.Data.Notes;
 
-public class Note extends AppCompatActivity {
+
+public class NoteActivity extends Activity {
 
     private NotePadesDBHelper mDBHelper;
 
-    String type = new String();
-    String idUser;
-    Integer idNote;
-    String mNameString = new String();
-    String mTextString = new String();
-    Notes mNote = new Notes();
+    private String type;
+    private String idUser;
+    private Integer idNote;
+    private String mNameString = new String();
+    private String mTextString = new String();
+    private Notes mNote = new Notes();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note);
 
-        Button bDelete = (Button)findViewById(R.id.button5);
+        Button bDelete = (Button)findViewById(R.id.buttonDelete);
 
-        type = getIntent().getStringExtra("type");
-        idUser = getIntent().getStringExtra("id_user");
+        type = getIntent().getStringExtra(StartActivity.OPEN_TYPE);
+        idUser = getIntent().getStringExtra(StartActivity.USER_ID);
 
 
-        if (type.equals("edit")) {
-            idNote = Integer.valueOf(getIntent().getStringExtra("id_note"));
+        if (type.equals(StartActivity.EDIT_TYPE)) {
+            idNote = Integer.valueOf(getIntent().getStringExtra(StartActivity.NOTE_ID));
             loadData(idNote);
             bDelete.setEnabled(true);
         } else {
@@ -52,8 +54,8 @@ public class Note extends AppCompatActivity {
         mDBHelper = new NotePadesDBHelper(this);
 
         SQLiteDatabase db = mDBHelper.getWritableDatabase();
-        EditText mName = (EditText)findViewById(R.id.editName);
-        EditText mText = (EditText)findViewById(R.id.editText4);
+        EditText mName = (EditText)findViewById(R.id.editTextName);
+        EditText mText = (EditText)findViewById(R.id.editTextText);
 
         String mQuery = "SELECT * FROM " + DataBase.Notes.TABLE_NAME + " WHERE "
                 + DataBase.Notes.USER_ID + " = " + idUser + " AND "
@@ -79,58 +81,46 @@ public class Note extends AppCompatActivity {
 
     private void newNote(String mName, String mText) {
         if ((mName.isEmpty())||(mText.isEmpty())){
-            Toast.makeText(this, "Нельзя добавлять пустые записи!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.error_empty_data, Toast.LENGTH_SHORT).show();
         } else {
             long idNote = mNote.addNote(this, idUser, mName, mText);
-
-            if (idNote == -1) {
-                Toast.makeText(this, "Ошибка записи", Toast.LENGTH_SHORT).show();
-            }
         }
     }
 
 
     public void saveContentNote(View view) {
-        EditText mName = (EditText)findViewById(R.id.editName);
-        EditText mText = (EditText)findViewById(R.id.editText4);
+        EditText mName = (EditText)findViewById(R.id.editTextName);
+        EditText mText = (EditText)findViewById(R.id.editTextText);
 
         mNameString = mName.getText().toString().trim();
         mTextString = mText.getText().toString().trim();
 
         if (!mNameString.isEmpty() & !mTextString.isEmpty()){
-            if (type.equals("edit")) {
+            if (type.equals(StartActivity.EDIT_TYPE)) {
                 mNote.changeNote(this, idNote, mNameString, mTextString);
             } else {
                 newNote(mNameString, mTextString);
             }
-            Intent intent = new Intent(Note.this, ListNotes.class);
-            intent.putExtra("id_user", idUser);
-            startActivity(intent);
+            startActivity(StartActivity.newIntent(NoteActivity.this, idUser));
         } else {
-            Toast.makeText(this, "Нельзя вводить пустые значения!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.error_empty_data, Toast.LENGTH_SHORT).show();
         }
-
-
     }
 
     public void deleteCurrentNote(View view) {
-        EditText mName = (EditText)findViewById(R.id.editName);
-        EditText mText = (EditText)findViewById(R.id.editText4);
+        EditText mName = (EditText)findViewById(R.id.editTextName);
+        EditText mText = (EditText)findViewById(R.id.editTextText);
 
         mNameString = mName.getText().toString().trim();
         mTextString = mText.getText().toString().trim();
 
         mNote.deleteNote(this, idNote);
 
-        Intent intent = new Intent(Note.this, ListNotes.class);
-        intent.putExtra("id_user", idUser);
-        startActivity(intent);
+        startActivity(StartActivity.newIntent(NoteActivity.this, idUser));
     }
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(Note.this, ListNotes.class);
-        intent.putExtra("id_user", idUser);
-        startActivity(intent);
+        startActivity(StartActivity.newIntent(NoteActivity.this, idUser));
     }
 }

@@ -12,8 +12,8 @@
             android:text="@string/entrance_activity_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textViewEntrance"
-            android:textSize="18sp"
+            android:id="@+id/entrance_text_view"
+            android:textSize="@dimen/entrance_text_size"
             android:textAlignment="center"
             android:textStyle="normal|bold"
             android:gravity="center"/>
@@ -24,26 +24,25 @@
             android:layout_height="@dimen/block_height">
 
             <LinearLayout
-                android:layout_width="@dimen/text_view_width"
+                android:layout_width="@dimen/text_view_password_width"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textViewLogin"
-                    android:layout_width="@dimen/text_view_width"
-                    android:layout_height="@dimen/text_view_height"
+                    android:id="@+id/login_text_view"
+                    android:layout_width="@dimen/text_view_login_width"
+                    android:layout_height="@dimen/text_view_login_height"
                     android:text="@string/login"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/login_text_size"
                     android:textStyle="normal|bold"
                     android:gravity="center_vertical"/>
 
                 <TextView
-                    android:id="@+id/textViewPassword"
-                    android:layout_width="@dimen/text_view_width"
-                    android:layout_height="@dimen/text_view_height"
-                    android:layout_weight="1"
+                    android:id="@+id/password_text_view"
+                    android:layout_width="@dimen/text_view_password_width"
+                    android:layout_height="@dimen/text_view_password_height"
                     android:text="@string/password"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/password_text_size"
                     android:textStyle="normal|bold"
                     android:gravity="center_vertical"/>
             </LinearLayout>
@@ -54,19 +53,17 @@
                 android:orientation="vertical">
 
                 <EditText
-                    android:id="@+id/editTextLogin"
-                    android:layout_width="@dimen/edit_text_width"
-                    android:layout_height="@dimen/edit_text_height"
-                    android:layout_weight="0.5"
+                    android:id="@+id/login_edit_text"
+                    android:layout_width="@dimen/edit_text_login_width"
+                    android:layout_height="@dimen/edit_text_login_height"
                     android:ems="10"
                     android:hint="@string/login"
                     android:inputType="textPersonName" />
 
                 <EditText
-                    android:id="@+id/editTextPassword"
-                    android:layout_width="@dimen/edit_text_width"
-                    android:layout_height="@dimen/edit_text_height"
-                    android:layout_weight="0.5"
+                    android:id="@+id/password_edit_text"
+                    android:layout_width="@dimen/edit_text_password_width"
+                    android:layout_height="@dimen/edit_text_password_height"
                     android:ems="10"
                     android:hint="@string/password"
                     android:inputType="textPassword" />
@@ -90,7 +87,7 @@
                 android:text="@string/button_registration_name"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:id="@+id/buttonRegistration"
+                android:id="@+id/registration_button"
                 android:onClick="registrationClick"
                 android:layout_gravity="center"
                 android:layout_weight="0.5" />
@@ -99,7 +96,7 @@
                 android:text="@string/button_entrance_name"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:id="@+id/buttonEntrance"
+                android:id="@+id/entrance_button"
                 android:onClick="entrance"
                 android:layout_gravity="center"
                 android:layout_weight="0.5" />
@@ -109,7 +106,7 @@
             android:text="@string/button_database_look_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/buttonLookDatabase"
+            android:id="@+id/look_database_button"
             android:onClick="lookToDatabaseClick"
             android:visibility="visible"/>
 

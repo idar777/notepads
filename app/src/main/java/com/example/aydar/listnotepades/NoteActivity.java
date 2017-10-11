@@ -1,12 +1,9 @@
 package com.example.aydar.listnotepades;
 
-import android.app.Activity;
-import android.content.ContentValues;
-import android.content.DialogInterface;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,28 +11,48 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.aydar.listnotepades.Data.DataBase;
-import com.example.aydar.listnotepades.Data.NotePadesDBHelper;
-import com.example.aydar.listnotepades.Data.Notes;
+import com.example.aydar.listnotepades.data.DataBase;
+import com.example.aydar.listnotepades.data.NotePadesDBHelper;
+import com.example.aydar.listnotepades.data.Notes;
+
+import static com.example.aydar.listnotepades.StartActivity.USER_ID;
 
 
-public class NoteActivity extends Activity {
+public class NoteActivity extends AppCompatActivity {
 
-    private NotePadesDBHelper mDBHelper;
-
+    private NotePadesDBHelper dbHelper;
     private String type;
     private String idUser;
     private Integer idNote;
-    private String mNameString = new String();
-    private String mTextString = new String();
-    private Notes mNote = new Notes();
+    private String nameString = new String();
+    private String textString = new String();
+    private Notes note = new Notes();
+    private EditText name;
+    private EditText text;
+
+    public static final Intent newIntent(Context context, String idUser, String editType, String noteId) {
+        Intent intent = new Intent(context, NoteActivity.class);
+        intent.putExtra(USER_ID, idUser);
+        intent.putExtra(StartActivity.OPEN_TYPE, editType);
+        intent.putExtra(StartActivity.NOTE_ID, noteId);
+        return intent;
+    }
+
+    public static final Intent newIntent(Context context, String idUser, String editType) {
+        Intent intent = new Intent(context, NoteActivity.class);
+        intent.putExtra(USER_ID, idUser);
+        intent.putExtra(StartActivity.OPEN_TYPE, editType);
+        return intent;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note);
 
-        Button bDelete = (Button)findViewById(R.id.buttonDelete);
+        Button bDelete = (Button)findViewById(R.id.delete_button);
+        name = (EditText)findViewById(R.id.name_note_edit_text);
+        text = (EditText)findViewById(R.id.content_edit_text);
 
         type = getIntent().getStringExtra(StartActivity.OPEN_TYPE);
         idUser = getIntent().getStringExtra(StartActivity.USER_ID);
@@ -51,11 +68,9 @@ public class NoteActivity extends Activity {
     }
 
     private void loadData(Integer idNote) {
-        mDBHelper = new NotePadesDBHelper(this);
+        dbHelper = new NotePadesDBHelper(this);
 
-        SQLiteDatabase db = mDBHelper.getWritableDatabase();
-        EditText mName = (EditText)findViewById(R.id.editTextName);
-        EditText mText = (EditText)findViewById(R.id.editTextText);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         String mQuery = "SELECT * FROM " + DataBase.Notes.TABLE_NAME + " WHERE "
                 + DataBase.Notes.USER_ID + " = " + idUser + " AND "
@@ -70,8 +85,8 @@ public class NoteActivity extends Activity {
                 String currentName = cursor.getString(nameColumnIndex);
                 String currentText = cursor.getString(textColumnIndex);
 
-                mName.setText(currentName);
-                mText.setText(currentText);
+                name.setText(currentName);
+                text.setText(currentText);
             }
         } finally {
             cursor.close();
@@ -83,44 +98,38 @@ public class NoteActivity extends Activity {
         if ((mName.isEmpty())||(mText.isEmpty())){
             Toast.makeText(this, R.string.error_empty_data, Toast.LENGTH_SHORT).show();
         } else {
-            long idNote = mNote.addNote(this, idUser, mName, mText);
+            long idNote = note.addNote(this, idUser, mName, mText);
         }
     }
 
 
     public void saveContentNote(View view) {
-        EditText mName = (EditText)findViewById(R.id.editTextName);
-        EditText mText = (EditText)findViewById(R.id.editTextText);
+        nameString = name.getText().toString().trim();
+        textString = text.getText().toString().trim();
 
-        mNameString = mName.getText().toString().trim();
-        mTextString = mText.getText().toString().trim();
-
-        if (!mNameString.isEmpty() & !mTextString.isEmpty()){
+        if (!nameString.isEmpty() & !textString.isEmpty()){
             if (type.equals(StartActivity.EDIT_TYPE)) {
-                mNote.changeNote(this, idNote, mNameString, mTextString);
+                note.changeNote(this, idNote, nameString, textString);
             } else {
-                newNote(mNameString, mTextString);
+                newNote(nameString, textString);
             }
-            startActivity(StartActivity.newIntent(NoteActivity.this, idUser));
+            startActivity(ListNotesActivity.newIntent(NoteActivity.this, idUser));
         } else {
             Toast.makeText(this, R.string.error_empty_data, Toast.LENGTH_SHORT).show();
         }
     }
 
     public void deleteCurrentNote(View view) {
-        EditText mName = (EditText)findViewById(R.id.editTextName);
-        EditText mText = (EditText)findViewById(R.id.editTextText);
+        nameString = name.getText().toString().trim();
+        textString = text.getText().toString().trim();
 
-        mNameString = mName.getText().toString().trim();
-        mTextString = mText.getText().toString().trim();
+        note.deleteNote(this, idNote);
 
-        mNote.deleteNote(this, idNote);
-
-        startActivity(StartActivity.newIntent(NoteActivity.this, idUser));
+        startActivity(ListNotesActivity.newIntent(NoteActivity.this, idUser));
     }
 
     @Override
     public void onBackPressed() {
-        startActivity(StartActivity.newIntent(NoteActivity.this, idUser));
+        startActivity(ListNotesActivity.newIntent(NoteActivity.this, idUser));
     }
 }

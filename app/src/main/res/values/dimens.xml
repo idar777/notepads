@@ -4,10 +4,19 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="text_block_width">100dp</dimen>
     <dimen name="block_height">100dp</dimen>
-    <dimen name="text_view_height">40dp</dimen>
-    <dimen name="text_view_width">100dp</dimen>
-    <dimen name="edit_text_height">40dp</dimen>
-    <dimen name="edit_text_width">150dp</dimen>
-    <dimen name="list_view_height">470dp</dimen>
+    <dimen name="text_view_login_height">40dp</dimen>
+    <dimen name="text_view_login_width">100dp</dimen>
+    <dimen name="text_view_password_height">40dp</dimen>
+    <dimen name="text_view_password_width">100dp</dimen>
+    <dimen name="edit_text_login_height">40dp</dimen>
+    <dimen name="edit_text_login_width">150dp</dimen>
+    <dimen name="edit_text_password_height">40dp</dimen>
+    <dimen name="edit_text_password_width">150dp</dimen>
+    <dimen name="list_view_height">430dp</dimen>
     <dimen name="edit_note_height">350dp</dimen>
+    <dimen name="entrance_text_size">18sp</dimen>
+    <dimen name="login_text_size">18sp</dimen>
+    <dimen name="password_text_size">18sp</dimen>
+    <dimen name="registration_text_size">18sp</dimen>
+
 </resources>

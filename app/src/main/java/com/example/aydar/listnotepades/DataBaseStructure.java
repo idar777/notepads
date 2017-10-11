@@ -1,29 +1,22 @@
 package com.example.aydar.listnotepades;
 
+import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.ScrollView;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.app.ListActivity;
 
-import com.example.aydar.listnotepades.Data.DataBase;
-import com.example.aydar.listnotepades.Data.NotePadesDBHelper;
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.appindexing.Thing;
-import com.google.android.gms.common.api.GoogleApiClient;
+import com.example.aydar.listnotepades.data.DataBase;
+import com.example.aydar.listnotepades.data.NotePadesDBHelper;
 
 import java.util.ArrayList;
 
 public class DataBaseStructure extends AppCompatActivity {
 
-    private NotePadesDBHelper mDBHelper;
+    private NotePadesDBHelper dbHelper;
     private ArrayList<String> listUsers = new ArrayList<>();
 
     /**
@@ -31,27 +24,32 @@ public class DataBaseStructure extends AppCompatActivity {
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
 //    private GoogleApiClient client;
-    public ArrayAdapter mAdapter;
+    public ArrayAdapter adapter;
+
+    public static final Intent newIntent(Context context) {
+        Intent intent = new Intent(context, DataBaseStructure.class);
+        return intent;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data_base_structure);
-        ListView mListView = (ListView)findViewById(R.id.listDataBase);
+        ListView mListView = (ListView)findViewById(R.id.database_list);
         databaseView();
 
 
-        mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listUsers);
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listUsers);
 
-        mListView.setAdapter(mAdapter);
+        mListView.setAdapter(adapter);
     }
 
     private void databaseView() {
 
 
-        mDBHelper = new NotePadesDBHelper(this);
+        dbHelper = new NotePadesDBHelper(this);
 
-        SQLiteDatabase db = mDBHelper.getReadableDatabase();
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
 
         listUsers.add("users --------------------------");
 

@@ -1,6 +1,5 @@
 package com.example.aydar.listnotepades;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -10,44 +9,34 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import com.example.aydar.listnotepades.Data.DataBase;
-import com.example.aydar.listnotepades.Data.NotePadesDBHelper;
+import com.example.aydar.listnotepades.data.DataBase;
+import com.example.aydar.listnotepades.data.NotePadesDBHelper;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.StringTokenizer;
 
-public class ListNotesActivity extends Activity {
+import static com.example.aydar.listnotepades.StartActivity.USER_ID;
 
-    private NotePadesDBHelper mDBHelper;
+public class ListNotesActivity extends AppCompatActivity {
+
+    private NotePadesDBHelper dbHelper;
 
     private ArrayList<String> listNotes = new ArrayList();
 
-    private ArrayAdapter mAdapter;
+    private ArrayAdapter adapter;
 
     private String idUser;
 
     private Integer posItem;
+    private ListView listViewNotes2;
 
-    public static final Intent newIntent(Context context, String idUser, String editType, String noteId) {
-        Intent intent = new Intent(context, NoteActivity.class);
-        intent.putExtra(StartActivity.USER_ID, idUser);
-        intent.putExtra(StartActivity.OPEN_TYPE, editType);
-        intent.putExtra(StartActivity.NOTE_ID, noteId);
-        return intent;
-    }
 
-    public static final Intent newIntent(Context context, String idUser, String editType) {
-        Intent intent = new Intent(context, NoteActivity.class);
-        intent.putExtra(StartActivity.USER_ID, idUser);
-        intent.putExtra(StartActivity.OPEN_TYPE, editType);
+    public static final Intent newIntent(Context context, String idUser) {
+        Intent intent = new Intent(context, ListNotesActivity.class);
+        intent.putExtra(USER_ID, idUser);
         return intent;
     }
 
@@ -56,21 +45,21 @@ public class ListNotesActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_notes);
 
-        ListView listViewNotes2 = (ListView) findViewById(R.id.listNotes);
+        listViewNotes2 = (ListView) findViewById(R.id.notes_list);
 
-        idUser = getIntent().getStringExtra(StartActivity.USER_ID);
+        idUser = getIntent().getStringExtra(USER_ID);
 
         setNotesContent();
 
-        mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listNotes);
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listNotes);
 
-        listViewNotes2.setAdapter(mAdapter);
+        listViewNotes2.setAdapter(adapter);
 
         listViewNotes2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View itemClicked, int position, long id) {
                 posItem = position;
-                startActivity(newIntent(ListNotesActivity.this, idUser, StartActivity.EDIT_TYPE, getIDNote(posItem)));
+                startActivity(NoteActivity.newIntent(ListNotesActivity.this, idUser, StartActivity.EDIT_TYPE, getIDNote(posItem)));
             }
         });
 
@@ -78,9 +67,9 @@ public class ListNotesActivity extends Activity {
 
 
     private void setNotesContent() {
-        mDBHelper = new NotePadesDBHelper(this);
+        dbHelper = new NotePadesDBHelper(this);
 
-        SQLiteDatabase db = mDBHelper.getReadableDatabase();
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
 
         String[] projectionNotes = {
                 DataBase.Notes.COLUMN_NAME
@@ -112,11 +101,11 @@ public class ListNotesActivity extends Activity {
     }
 
     private String getIDNote(Integer position) {
-        mDBHelper = new NotePadesDBHelper(this);
+        dbHelper = new NotePadesDBHelper(this);
 
         String idNote = "-1";
 
-        SQLiteDatabase db = mDBHelper.getReadableDatabase();
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
 
         String[] projectionNotes = {
                 DataBase.Notes.COLUMN_NAME,
@@ -145,7 +134,7 @@ public class ListNotesActivity extends Activity {
     }
 
     public void addNewNote(View view) {
-        startActivity(newIntent(ListNotesActivity.this,idUser, StartActivity.NEW_TYPE));
+        startActivity(NoteActivity.newIntent(ListNotesActivity.this,idUser, StartActivity.NEW_TYPE));
     }
 
     @Override

@@ -24,28 +24,28 @@
             android:inputType="textPersonName"
             android:hint="@string/name"
             android:ems="10"
-            android:id="@+id/editTextName" />
+            android:id="@+id/name_note_edit_text" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="@dimen/edit_note_height"
             android:inputType="textMultiLine"
             android:ems="10"
-            android:id="@+id/editTextText"
+            android:id="@+id/content_edit_text"
             android:gravity="top"/>
 
         <Button
             android:text="@string/save"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/buttonSave"
+            android:id="@+id/save_button"
             android:onClick="saveContentNote"/>
 
         <Button
             android:text="@string/delete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/buttonDelete"
+            android:id="@+id/delete_button"
             android:onClick="deleteCurrentNote"/>
     </LinearLayout>
 </RelativeLayout>

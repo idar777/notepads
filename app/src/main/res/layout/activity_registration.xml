@@ -22,8 +22,8 @@
             android:text="@string/registration_activity_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textViewActivityName"
-            android:textSize="18sp"
+            android:id="@+id/registration_text_view"
+            android:textSize="@dimen/registration_text_size"
             android:textAlignment="center"
             android:textStyle="normal|bold"
             android:gravity="center"/>
@@ -39,21 +39,21 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textViewLogin2"
-                    android:layout_width="@dimen/text_view_width"
-                    android:layout_height="@dimen/text_view_height"
+                    android:id="@+id/login_text_view"
+                    android:layout_width="@dimen/text_view_login_width"
+                    android:layout_height="@dimen/text_view_login_height"
                     android:text="@string/login"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/login_text_size"
                     android:textStyle="normal|bold"
                     android:layout_weight="0.5"
                     android:gravity="center_vertical"/>
 
                 <TextView
-                    android:id="@+id/textViewPassword2"
-                    android:layout_width="@dimen/text_view_width"
-                    android:layout_height="@dimen/text_view_height"
+                    android:id="@+id/password_text_view"
+                    android:layout_width="@dimen/text_view_password_width"
+                    android:layout_height="@dimen/text_view_password_height"
                     android:text="@string/password"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/password_text_size"
                     android:textStyle="normal|bold"
                     android:layout_weight="0.5"
                     android:gravity="center_vertical"/>
@@ -65,18 +65,18 @@
                 android:orientation="vertical">
 
                 <EditText
-                    android:id="@+id/editTextLogin2"
-                    android:layout_width="@dimen/edit_text_width"
-                    android:layout_height="@dimen/edit_text_height"
+                    android:id="@+id/login_edit_text"
+                    android:layout_width="@dimen/edit_text_login_width"
+                    android:layout_height="@dimen/edit_text_login_height"
                     android:ems="10"
                     android:hint="@string/login"
                     android:layout_weight="0.5"
                     android:inputType="textPersonName" />
 
                 <EditText
-                    android:id="@+id/editTextPassword2"
-                    android:layout_width="@dimen/edit_text_width"
-                    android:layout_height="@dimen/edit_text_height"
+                    android:id="@+id/password_edit_text"
+                    android:layout_width="@dimen/edit_text_password_width"
+                    android:layout_height="@dimen/edit_text_password_height"
                     android:ems="10"
                     android:hint="@string/password"
                     android:layout_weight="0.5"
@@ -89,7 +89,7 @@
             android:text="@string/button_confirm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/buttonConfirm"
+            android:id="@+id/confirm_button"
             android:layout_gravity="center"
             android:onClick="addUserClick"/>
 

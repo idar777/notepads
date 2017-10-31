@@ -8,10 +8,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.aydar.listnotepades.data.DataBase;
 import com.example.aydar.listnotepades.data.NotePadesDBHelper;
@@ -23,15 +26,11 @@ import static com.example.aydar.listnotepades.StartActivity.USER_ID;
 public class ListNotesActivity extends AppCompatActivity {
 
     private NotePadesDBHelper dbHelper;
-
     private ArrayList<String> listNotes = new ArrayList();
-
-    private ArrayAdapter adapter;
+    private RecyclerView recyclerView;
 
     private String idUser;
-
     private Integer posItem;
-    private ListView listViewNotes2;
 
 
     public static final Intent newIntent(Context context, String idUser) {
@@ -45,23 +44,24 @@ public class ListNotesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_notes);
 
-        listViewNotes2 = (ListView) findViewById(R.id.notes_list);
+        recyclerView = (RecyclerView)findViewById(R.id.notes_recycler_view);
+
+        LinearLayoutManager llr = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(llr);
+        recyclerView.setHasFixedSize(true);
 
         idUser = getIntent().getStringExtra(USER_ID);
-
         setNotesContent();
 
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listNotes);
-
-        listViewNotes2.setAdapter(adapter);
-
-        listViewNotes2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        RVAdapter adapter = new RVAdapter(listNotes, new CustomItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View itemClicked, int position, long id) {
+            public void onItemClick(View v, int position) {
+                Toast.makeText(ListNotesActivity.this, "Clicked:" + position, Toast.LENGTH_SHORT).show();
                 posItem = position;
                 startActivity(NoteActivity.newIntent(ListNotesActivity.this, idUser, StartActivity.EDIT_TYPE, getIDNote(posItem)));
             }
         });
+        recyclerView.setAdapter(adapter);
 
     }
 

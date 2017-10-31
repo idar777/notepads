@@ -11,6 +11,7 @@ import android.widget.ListView;
 
 import com.example.aydar.listnotepades.data.DataBase;
 import com.example.aydar.listnotepades.data.NotePadesDBHelper;
+import com.example.aydar.listnotepades.data.Users;
 
 import java.util.ArrayList;
 
@@ -54,12 +55,12 @@ public class DataBaseStructure extends AppCompatActivity {
         listUsers.add("users --------------------------");
 
         String[] projectionUsers = {
-                DataBase.Users._ID,
-                DataBase.Users.COLUMN_LOGIN,
-                DataBase.Users.COLUMN_PASSWORD
+                Users._ID,
+                Users.COLUMN_LOGIN,
+                Users.COLUMN_PASSWORD
         };
 
-        Cursor cursor = db.query(DataBase.Users.TABLE_NAME,
+        Cursor cursor = db.query(Users.TABLE_NAME,
                 projectionUsers,
                 null,
                 null,
@@ -68,9 +69,9 @@ public class DataBaseStructure extends AppCompatActivity {
                 null);
 
         try {
-            int loginColumnIndex = cursor.getColumnIndex(DataBase.Users.COLUMN_LOGIN);
-            int passwordColumnIndex = cursor.getColumnIndex(DataBase.Users.COLUMN_PASSWORD);
-            int idColumnIndex = cursor.getColumnIndex(DataBase.Users._ID);
+            int loginColumnIndex = cursor.getColumnIndex(Users.COLUMN_LOGIN);
+            int passwordColumnIndex = cursor.getColumnIndex(Users.COLUMN_PASSWORD);
+            int idColumnIndex = cursor.getColumnIndex(Users._ID);
 
             while (cursor.moveToNext()) {
                 String currentLogin = cursor.getString(loginColumnIndex);

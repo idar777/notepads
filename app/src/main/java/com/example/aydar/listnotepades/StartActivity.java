@@ -35,7 +35,6 @@ public class StartActivity extends AppCompatActivity {
 
         login = (EditText)findViewById(R.id.login_edit_text);
         password = (EditText)findViewById(R.id.password_edit_text);
-
     }
 
     public void registrationClick(View view) {
@@ -47,10 +46,8 @@ public class StartActivity extends AppCompatActivity {
     }
 
     public void entrance(View view) throws NoSuchAlgorithmException {
-        Users usersWork = new Users();
-
         if (Utils.checkUserName(login.getText().toString()) & !(password.toString().isEmpty())) {
-            Integer idUser = usersWork.checkUser(this, Utils.changeToMD5(login.getText().toString()), Utils.changeToMD5(password.getText().toString()));
+            Integer idUser = Users.checkUser(this, login.getText().toString(), password.getText().toString());
             if (idUser.equals(0)){
                 Toast.makeText(this, R.string.access_is_denied, Toast.LENGTH_SHORT).show();
             } else {

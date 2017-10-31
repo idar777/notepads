@@ -38,25 +38,12 @@ public class RegistrationActivity extends AppCompatActivity {
 
     public void addUserClick(View view) throws NoSuchAlgorithmException {
         String loginData = login.getText().toString();
-        Users usersWork = new Users();
-
+        String passwordData = password.getText().toString();
         if (Utils.checkUserName(login.getText().toString()) & !(password.toString().isEmpty())) {
-            if (usersWork.checkUserExists(this, Utils.changeToMD5(loginData))) {
+            if (Users.checkUserExists(this, loginData)) {
                 Toast.makeText(this, R.string.error_login_exists, Toast.LENGTH_SHORT).show();
             } else {
-                NotePadesDBHelper dbHelper = new NotePadesDBHelper(this);
-
-                SQLiteDatabase db = dbHelper.getWritableDatabase();
-
-                ContentValues values = new ContentValues();
-                values.put(DataBase.Users.COLUMN_LOGIN, Utils.changeToMD5(login.getText().toString().trim()));
-                values.put(DataBase.Users.COLUMN_PASSWORD, Utils.changeToMD5(password.getText().toString().trim()));
-
-                long newRowId = db.insert(DataBase.Users.TABLE_NAME, null, values);
-
-                db.close();
-
-                startActivity(ListNotesActivity.newIntent(RegistrationActivity.this,String.valueOf(newRowId)));
+                startActivity(ListNotesActivity.newIntent(RegistrationActivity.this,String.valueOf(Users.insertUser(this, loginData, passwordData))));
             }
         } else {
             Toast.makeText(this, R.string.error_incorrect_format_login, Toast.LENGTH_SHORT).show();

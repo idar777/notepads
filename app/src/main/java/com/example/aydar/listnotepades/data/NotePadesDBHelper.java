@@ -13,7 +13,7 @@ public class NotePadesDBHelper extends SQLiteOpenHelper{
 
     private static final String DATABASE_NAME = "notepads.db";
 
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 6;
 
     public NotePadesDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -21,10 +21,10 @@ public class NotePadesDBHelper extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String SQL_CREATE_USERS_TABLE = "CREATE TABLE IF NOT EXISTS " + DataBase.Users.TABLE_NAME + " ("
-                + DataBase.Users._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + DataBase.Users.COLUMN_LOGIN + " TEXT NOT NULL, "
-                + DataBase.Users.COLUMN_PASSWORD + " TEXT NOT NULL);";
+        String SQL_CREATE_USERS_TABLE = "CREATE TABLE IF NOT EXISTS " + Users.TABLE_NAME + " ("
+                + Users._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + Users.COLUMN_LOGIN + " TEXT NOT NULL, "
+                + Users.COLUMN_PASSWORD + " TEXT NOT NULL);";
 
         db.execSQL(SQL_CREATE_USERS_TABLE);
 
@@ -41,7 +41,7 @@ public class NotePadesDBHelper extends SQLiteOpenHelper{
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + DataBase.Users.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + Users.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + DataBase.Notes.TABLE_NAME);
 
         // Создаём новую таблицу

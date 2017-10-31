@@ -1,4 +1,4 @@
-package com.example.aydar.listnotepades.data;
+package com.example.aydar.listnotepades;
 
 /**
  * Created by Aydar on 26.10.17.
@@ -12,8 +12,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.aydar.listnotepades.CustomItemClickListener;
-
 import java.util.ArrayList;
 
 public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> {
@@ -23,14 +21,12 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> 
     public static class PersonViewHolder extends RecyclerView.ViewHolder {
 
         CardView cv;
-        TextView personName;
-        TextView personAge;
-        ImageView personPhoto;
+        TextView nameNote;
 
         PersonViewHolder(View itemView) {
             super(itemView);
             cv = (CardView)itemView.findViewById(R.id.cv);
-            personName = (TextView)itemView.findViewById(R.);
+            nameNote = (TextView)itemView.findViewById(R.id.name_note_text_view);
         }
     }
 
@@ -61,13 +57,11 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> 
 
     @Override
     public void onBindViewHolder(PersonViewHolder personViewHolder, int i) {
-        personViewHolder.personName.setText(persons.get(i).name);
-        personViewHolder.personAge.setText(persons.get(i).age);
-        personViewHolder.personPhoto.setImageResource(persons.get(i).photoId);
+        personViewHolder.nameNote.setText(listNotes.get(i));
     }
 
     @Override
     public int getItemCount() {
-        return persons.size();
+        return listNotes.size();
     }
 }

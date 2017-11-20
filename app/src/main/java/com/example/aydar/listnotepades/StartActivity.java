@@ -1,7 +1,5 @@
 package com.example.aydar.listnotepades;
 
-import android.content.Context;
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,8 +7,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
-import com.example.aydar.listnotepades.data.Users;
+import com.example.aydar.listnotepades.data.NotePadesDBHelper;
 import com.example.aydar.listnotepades.data.Utils;
+import com.example.aydar.listnotepades.data.dao.UsersDAO;
+import com.example.aydar.listnotepades.data.dto.User;
 
 import io.fabric.sdk.android.Fabric;
 
@@ -24,8 +24,8 @@ public class StartActivity extends AppCompatActivity {
     public static final String EDIT_TYPE = "edit";
     public static final String NEW_TYPE = "new";
 
-    private EditText login;
-    private EditText password;
+    private EditText loginEditText;
+    private EditText passwordEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +33,8 @@ public class StartActivity extends AppCompatActivity {
         Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
 
-        login = (EditText)findViewById(R.id.login_edit_text);
-        password = (EditText)findViewById(R.id.password_edit_text);
+        loginEditText = (EditText)findViewById(R.id.login_edit_text);
+        passwordEditText = (EditText)findViewById(R.id.password_edit_text);
     }
 
     public void registrationClick(View view) {
@@ -46,12 +46,16 @@ public class StartActivity extends AppCompatActivity {
     }
 
     public void entrance(View view) throws NoSuchAlgorithmException {
-        if (Utils.checkUserName(login.getText().toString()) & !(password.toString().isEmpty())) {
-            Integer idUser = Users.checkUser(this, login.getText().toString(), password.getText().toString());
+        NotePadesDBHelper dbHelper = new NotePadesDBHelper(this);
+        UsersDAO usersDAO = new UsersDAO(dbHelper);
+        User user = new User(loginEditText.getText().toString(),passwordEditText.getText().toString() );
+
+        if (Utils.checkUserName(user.getLogin()) & !(user.getPassword().isEmpty())) {
+            Integer idUser = usersDAO.checkUser(user, true);
             if (idUser.equals(0)){
                 Toast.makeText(this, R.string.access_is_denied, Toast.LENGTH_SHORT).show();
             } else {
-                startActivity(ListNotesActivity.newIntent(StartActivity.this, idUser.toString()));
+                startActivity(ListNotesActivity.newIntent(StartActivity.this, idUser));
             }
         } else {
             Toast.makeText(this, R.string.error_incorrect_format_login, Toast.LENGTH_SHORT).show();

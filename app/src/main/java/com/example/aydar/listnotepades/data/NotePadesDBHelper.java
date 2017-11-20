@@ -4,16 +4,22 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.aydar.listnotepades.data.dao.NotesDAO;
+import com.example.aydar.listnotepades.data.dao.UsersDAO;
+
+import java.util.ArrayList;
+
+
 /**
  * Created by aydar on 22.08.17.
  */
 
 public class NotePadesDBHelper extends SQLiteOpenHelper{
-
-
     private static final String DATABASE_NAME = "notepads.db";
 
     private static final int DATABASE_VERSION = 6;
+
+    DatabaseDAOFactory factory;
 
     public NotePadesDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -21,31 +27,19 @@ public class NotePadesDBHelper extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String SQL_CREATE_USERS_TABLE = "CREATE TABLE IF NOT EXISTS " + Users.TABLE_NAME + " ("
-                + Users._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + Users.COLUMN_LOGIN + " TEXT NOT NULL, "
-                + Users.COLUMN_PASSWORD + " TEXT NOT NULL);";
+        factory = new DatabaseDAOFactory(this);
+        factory.getDaoInstance(UsersDAO.class).createTable();
 
-        db.execSQL(SQL_CREATE_USERS_TABLE);
-
-        String SQL_CREATE_NOTES_TABLE = "CREATE TABLE IF NOT EXISTS " + DataBase.Notes.TABLE_NAME + " ("
-                + DataBase.Notes._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + DataBase.Notes.USER_ID + " INTEGER, "
-                + DataBase.Notes.NOTE_ID + " INTEGER, "
-                + DataBase.Notes.COLUMN_NAME + " TEXT NOT NULL, "
-                + DataBase.Notes.COLUMN_TEXT + " TEXT NOT NULL, "
-                + DataBase.Notes.COLUMN_DATE + " TEXT NOT NULL);";
-
-        db.execSQL(SQL_CREATE_NOTES_TABLE);
+        factory.getDaoInstance(NotesDAO.class).createTable();
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + Users.TABLE_NAME);
-        db.execSQL("DROP TABLE IF EXISTS " + DataBase.Notes.TABLE_NAME);
+        factory = new DatabaseDAOFactory(this);
+        factory.getDaoInstance(UsersDAO.class).dropTable();
+        factory.getDaoInstance(NotesDAO.class).dropTable();
 
         // Создаём новую таблицу
         onCreate(db);
-
     }
 }

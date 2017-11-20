@@ -9,9 +9,9 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.example.aydar.listnotepades.data.DataBase;
 import com.example.aydar.listnotepades.data.NotePadesDBHelper;
-import com.example.aydar.listnotepades.data.Users;
+import com.example.aydar.listnotepades.data.dao.Notes;
+import com.example.aydar.listnotepades.data.dao.Users;
 
 import java.util.ArrayList;
 
@@ -86,14 +86,14 @@ public class DataBaseStructure extends AppCompatActivity {
         listUsers.add("notes --------------------------");
 
         String[] projectionUsers3 = {
-                DataBase.Notes._ID,
-                DataBase.Notes.USER_ID,
-                DataBase.Notes.NOTE_ID,
-                DataBase.Notes.COLUMN_TEXT,
-                DataBase.Notes.COLUMN_NAME
+                Notes._ID,
+                Notes.USER_ID,
+                Notes.NOTE_ID,
+                Notes.COLUMN_TEXT,
+                Notes.COLUMN_NAME
         };
 
-        Cursor cursor3 = db.query(DataBase.Notes.TABLE_NAME,
+        Cursor cursor3 = db.query(Notes.TABLE_NAME,
                 projectionUsers3,
                 null,
                 null,
@@ -102,11 +102,11 @@ public class DataBaseStructure extends AppCompatActivity {
                 null);
 
         try {
-            int loginColumnIndex = cursor3.getColumnIndex(DataBase.Notes.USER_ID);
-            int passwordColumnIndex = cursor3.getColumnIndex(DataBase.Notes.NOTE_ID);
-            int nameColumnIndex = cursor3.getColumnIndex(DataBase.Notes.COLUMN_NAME);
-            int textColumnIndex = cursor3.getColumnIndex(DataBase.Notes.COLUMN_TEXT);
-            int idColumnIndex = cursor3.getColumnIndex(DataBase.Notes._ID);
+            int loginColumnIndex = cursor3.getColumnIndex(Notes.USER_ID);
+            int passwordColumnIndex = cursor3.getColumnIndex(Notes.NOTE_ID);
+            int nameColumnIndex = cursor3.getColumnIndex(Notes.COLUMN_NAME);
+            int textColumnIndex = cursor3.getColumnIndex(Notes.COLUMN_TEXT);
+            int idColumnIndex = cursor3.getColumnIndex(Notes._ID);
 
             while (cursor3.moveToNext()) {
                 Integer currentLogin = cursor3.getInt(loginColumnIndex);

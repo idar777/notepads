@@ -1,7 +1,9 @@
-package com.example.aydar.listnotepades.data;
+package com.example.aydar.listnotepades.data.dao;
 
 import android.content.Context;
 import android.provider.BaseColumns;
+
+import com.example.aydar.listnotepades.data.NotePadesDBHelper;
 
 /**
  * Created by aydar on 31.08.17.
@@ -15,24 +17,11 @@ public class Notes {
     public final static String COLUMN_NAME = "name";
     public final static String COLUMN_TEXT = "text";
     public final static String COLUMN_DATE = "date";
-
-    public String name;
-    public String text;
-
-    public Notes(String name, String text){
-        this.name = name;
-        this.text =text;
-    }
-
-    public long addNote(Context context, String idUser,String mName, String mText){
-        return NotePadesDBHelper.addNoteDB(context, idUser, mName, mText);
-    }
-
-    public void changeNote(Context context, long idNote, String mName, String mText){
-        NotePadesDBHelper.changeNoteDB(context, idNote, mName, mText);
-    }
-
-    public void deleteNote(Context context, long idNote) {
-        NotePadesDBHelper.deleteNoteDB(context, idNote);
-    }
+    public final static String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " + Notes.TABLE_NAME + " ("
+            + Notes._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + Notes.USER_ID + " INTEGER, "
+            + Notes.NOTE_ID + " INTEGER, "
+            + Notes.COLUMN_NAME + " TEXT NOT NULL, "
+            + Notes.COLUMN_TEXT + " TEXT NOT NULL, "
+            + Notes.COLUMN_DATE + " TEXT NOT NULL);";
 }

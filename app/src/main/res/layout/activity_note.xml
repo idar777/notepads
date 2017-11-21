@@ -39,13 +39,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/save_button"
-            android:onClick="saveContentNote"/>
+            android:onClick="saveContentNoteOnClick"/>
 
         <Button
             android:text="@string/delete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/delete_button"
-            android:onClick="deleteCurrentNote"/>
+            android:onClick="deleteCurrentNoteOnClick"/>
     </LinearLayout>
 </RelativeLayout>

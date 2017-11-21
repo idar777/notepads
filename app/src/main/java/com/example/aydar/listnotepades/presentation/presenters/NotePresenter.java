@@ -1,10 +1,15 @@
-package com.example.aydar.listnotepades;
+package com.example.aydar.listnotepades.presentation.presenters;
 
 import android.content.Context;
 
-import com.example.aydar.listnotepades.data.NotePadesDBHelper;
-import com.example.aydar.listnotepades.data.dao.NotesDAO;
-import com.example.aydar.listnotepades.data.dto.Note;
+import com.example.aydar.listnotepades.R;
+import com.example.aydar.listnotepades.data.db.dto.Note;
+import com.example.aydar.listnotepades.domain.AddNewNoteInteractor;
+import com.example.aydar.listnotepades.domain.DeleteNoteInteractor;
+import com.example.aydar.listnotepades.domain.LoadNoteInteractor;
+import com.example.aydar.listnotepades.domain.UpdateNoteInteractor;
+import com.example.aydar.listnotepades.presentation.view.INoteView;
+import com.example.aydar.listnotepades.presentation.view.StartActivity;
 
 /**
  * Created by aydar on 20.11.17.

@@ -1,8 +1,7 @@
-package com.example.aydar.listnotepades.data.dao;
+package com.example.aydar.listnotepades.data.db.dao;
 
-import com.example.aydar.listnotepades.data.dto.IDto;
+import com.example.aydar.listnotepades.data.db.dto.IDto;
 
-import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 /**
@@ -10,12 +9,18 @@ import java.util.List;
  */
 
 public interface IDao<T extends IDto> {
-    void createTable();
-    void dropTable();
-    List<T> select();
-    long insert(T item) throws NoSuchAlgorithmException;
-    void update(T item);
-    void remove(T item);
-    String getNameOfTable();
 
+    void createTable();
+
+    void dropTable();
+
+    List<T> select();
+
+    long insert(T item);
+
+    void update(T item);
+
+    void remove(T item);
+
+    String getNameOfTable();
 }

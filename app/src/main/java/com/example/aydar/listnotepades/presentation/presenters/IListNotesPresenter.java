@@ -1,4 +1,4 @@
-package com.example.aydar.listnotepades;
+package com.example.aydar.listnotepades.presentation.presenters;
 
 import android.content.Context;
 

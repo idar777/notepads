@@ -1,10 +1,12 @@
-package com.example.aydar.listnotepades;
+package com.example.aydar.listnotepades.presentation.presenters;
 
 import android.content.Context;
 
-import com.example.aydar.listnotepades.data.dto.Note;
+import com.example.aydar.listnotepades.data.db.dto.Note;
+import com.example.aydar.listnotepades.domain.GetListNotesInteractor;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by aydar on 16.11.17.
@@ -12,7 +14,7 @@ import java.util.ArrayList;
 
 public class ListNotesPresenter implements IListNotesPresenter {
     GetListNotesInteractor listNotesInteractor = new GetListNotesInteractor();
-    private ArrayList<Note> listNotes = new ArrayList();
+    private List<Note> listNotes = new ArrayList();
     private ArrayList<String> listNames = new ArrayList();
 
     public ArrayList<String> getListNotesNames(Context context, long idUser){

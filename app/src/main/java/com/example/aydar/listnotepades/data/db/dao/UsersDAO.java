@@ -1,15 +1,14 @@
-package com.example.aydar.listnotepades.data.dao;
+package com.example.aydar.listnotepades.data.db.dao;
 
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
-import com.example.aydar.listnotepades.data.NotePadesDBHelper;
-import com.example.aydar.listnotepades.domain.Utils;
-import com.example.aydar.listnotepades.data.dto.User;
+import com.example.aydar.listnotepades.data.db.NotePadesDBHelper;
+import com.example.aydar.listnotepades.data.db.dto.User;
 
-import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 /**
@@ -17,6 +16,8 @@ import java.util.List;
  */
 
 public class UsersDAO implements IDao<User> {
+
+    private static final String TAG = UsersDAO.class.getSimpleName();
 
     private NotePadesDBHelper dbHelper;
 
@@ -31,7 +32,7 @@ public class UsersDAO implements IDao<User> {
             db = this.dbHelper.getWritableDatabase();
             db.execSQL(Users.CREATE_TABLE);
         } catch (SQLException e) {
-            e.printStackTrace();
+            Log.d(TAG, e.getMessage());
         } finally {
             if (db != null) {
                 db.close();
@@ -46,7 +47,7 @@ public class UsersDAO implements IDao<User> {
             db = this.dbHelper.getWritableDatabase();
             db.execSQL("DROP TABLE IF EXISTS " + Users.TABLE_NAME);
         } catch (SQLException e) {
-            e.printStackTrace();
+            Log.d(TAG, e.getMessage());
         } finally {
             if (db != null) {
                 db.close();
@@ -61,18 +62,14 @@ public class UsersDAO implements IDao<User> {
 
     @Override
     public long insert(User item) {
-        long newRowId = 0;
+        long newRowId = -1;
         SQLiteDatabase db =null;
-
-        ContentValues values = new ContentValues();
-        values.put(Users.COLUMN_LOGIN, item.getLogin());
-        values.put(Users.COLUMN_PASSWORD, item.getPassword());
 
         try{
             db = this.dbHelper.getWritableDatabase();
-            newRowId = db.insert(Users.TABLE_NAME, null, values);
+            newRowId = db.insert(Users.TABLE_NAME, null, Users.getContentValues(item));
         } catch (SQLException e) {
-            e.printStackTrace();
+            Log.d(TAG, e.getMessage());
         } finally {
             if (db != null) {
                 db.close();
@@ -90,12 +87,6 @@ public class UsersDAO implements IDao<User> {
     }
 
     public int checkUser(User item, boolean isEntrance) {
-        try {
-            item.setLogin(Utils.changeToMD5(item.getLogin()));
-            item.setPassword(Utils.changeToMD5(item.getPassword()));
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
 
         String entranceData = "";
         if (isEntrance) {
@@ -117,7 +108,7 @@ public class UsersDAO implements IDao<User> {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            Log.d(TAG, e.getMessage());
         } finally {
             if (cursor != null) {
                 cursor.close();

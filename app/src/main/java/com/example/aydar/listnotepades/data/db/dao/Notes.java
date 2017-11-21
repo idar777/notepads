@@ -1,9 +1,10 @@
-package com.example.aydar.listnotepades.data.dao;
+package com.example.aydar.listnotepades.data.db.dao;
 
-import android.content.Context;
+import android.content.ContentValues;
 import android.provider.BaseColumns;
 
-import com.example.aydar.listnotepades.data.NotePadesDBHelper;
+import com.example.aydar.listnotepades.data.db.dto.Note;
+import com.example.aydar.listnotepades.data.db.dto.User;
 
 /**
  * Created by aydar on 31.08.17.
@@ -24,4 +25,14 @@ public class Notes {
             + Notes.COLUMN_NAME + " TEXT NOT NULL, "
             + Notes.COLUMN_TEXT + " TEXT NOT NULL, "
             + Notes.COLUMN_DATE + " TEXT NOT NULL);";
+
+    public static ContentValues getContentValues(Note note){
+        ContentValues values = new ContentValues();
+        values.put(Notes.NOTE_ID, 0);
+        values.put(Notes.USER_ID, note.getUserID());
+        values.put(Notes.COLUMN_NAME, note.getName());
+        values.put(Notes.COLUMN_TEXT, note.getText());
+        values.put(Notes.COLUMN_DATE, note.getDate());
+        return values;
+    }
 }

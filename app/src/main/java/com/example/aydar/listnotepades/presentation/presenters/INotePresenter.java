@@ -1,8 +1,9 @@
-package com.example.aydar.listnotepades;
+package com.example.aydar.listnotepades.presentation.presenters;
 
 import android.content.Context;
 
-import com.example.aydar.listnotepades.data.dto.Note;
+import com.example.aydar.listnotepades.data.db.dto.Note;
+import com.example.aydar.listnotepades.presentation.view.INoteView;
 
 /**
  * Created by aydar on 20.11.17.

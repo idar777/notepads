@@ -1,7 +1,6 @@
-package com.example.aydar.listnotepades;
+package com.example.aydar.listnotepades.domain;
 
-import com.example.aydar.listnotepades.data.Utils;
-import com.example.aydar.listnotepades.data.dto.User;
+import com.example.aydar.listnotepades.data.db.dto.User;
 
 /**
  * Created by aydar on 17.11.17.
@@ -9,7 +8,6 @@ import com.example.aydar.listnotepades.data.dto.User;
 
 public class CheckUserNameInteractor {
     public boolean checkUserName(User userData){
-        Utils utils = new Utils();
-        return utils.checkUserName(userData);
+        return userData.getLogin().matches("\\w+\\@\\w+\\.\\w+");
     }
 }

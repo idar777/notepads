@@ -1,13 +1,15 @@
-package com.example.aydar.listnotepades;
+package com.example.aydar.listnotepades.presentation.view;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
-import com.example.aydar.listnotepades.data.dto.User;
+import com.example.aydar.listnotepades.R;
+import com.example.aydar.listnotepades.data.db.dto.User;
+import com.example.aydar.listnotepades.presentation.presenters.StartPresenter;
 
 import io.fabric.sdk.android.Fabric;
 
@@ -21,7 +23,7 @@ public class StartActivity extends AppCompatActivity implements IStartView{
 
     private EditText loginEditText;
     private EditText passwordEditText;
-    private IStartPresenter startPresenter;
+    private StartPresenter startPresenter;
     private User userData;
 
     @Override

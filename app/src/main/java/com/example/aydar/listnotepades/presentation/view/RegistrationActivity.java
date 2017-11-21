@@ -1,4 +1,4 @@
-package com.example.aydar.listnotepades;
+package com.example.aydar.listnotepades.presentation.view;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,13 +8,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.aydar.listnotepades.data.NotePadesDBHelper;
-import com.example.aydar.listnotepades.data.dao.Users;
-import com.example.aydar.listnotepades.data.Utils;
-import com.example.aydar.listnotepades.data.dao.UsersDAO;
-import com.example.aydar.listnotepades.data.dto.User;
-
-import java.security.NoSuchAlgorithmException;
+import com.example.aydar.listnotepades.R;
+import com.example.aydar.listnotepades.data.db.dto.User;
+import com.example.aydar.listnotepades.presentation.presenters.RegistrationPresenter;
 
 public class RegistrationActivity extends AppCompatActivity implements IRegistrationView {
 

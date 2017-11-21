@@ -1,5 +1,8 @@
-package com.example.aydar.listnotepades.data.dao;
+package com.example.aydar.listnotepades.data.db.dao;
+import android.content.ContentValues;
 import android.provider.BaseColumns;
+
+import com.example.aydar.listnotepades.data.db.dto.User;
 
 /**
  * Created by aydar on 29.08.17.
@@ -14,4 +17,11 @@ public class Users {
                              + _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                              + COLUMN_LOGIN + " TEXT NOT NULL, "
                              + COLUMN_PASSWORD + " TEXT NOT NULL);";
+
+    public static ContentValues getContentValues(User user){
+        ContentValues values = new ContentValues();
+        values.put(Users.COLUMN_LOGIN, user.getLogin());
+        values.put(Users.COLUMN_PASSWORD, user.getPassword());
+        return values;
+    }
 }

@@ -1,10 +1,10 @@
-package com.example.aydar.listnotepades;
+package com.example.aydar.listnotepades.domain;
 
 import android.content.Context;
 
-import com.example.aydar.listnotepades.data.NotePadesDBHelper;
-import com.example.aydar.listnotepades.data.dao.NotesDAO;
-import com.example.aydar.listnotepades.data.dto.Note;
+import com.example.aydar.listnotepades.data.db.NotePadesDBHelper;
+import com.example.aydar.listnotepades.data.db.dao.NotesDAO;
+import com.example.aydar.listnotepades.data.db.dto.Note;
 
 /**
  * Created by aydar on 20.11.17.

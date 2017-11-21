@@ -1,4 +1,4 @@
-package com.example.aydar.listnotepades;
+package com.example.aydar.listnotepades.presentation.view;
 
 /**
  * Created by Aydar on 26.10.17.
@@ -9,8 +9,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.aydar.listnotepades.R;
 
 import java.util.ArrayList;
 

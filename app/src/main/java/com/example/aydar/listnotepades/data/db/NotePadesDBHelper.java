@@ -1,13 +1,11 @@
-package com.example.aydar.listnotepades.data;
+package com.example.aydar.listnotepades.data.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.example.aydar.listnotepades.data.dao.NotesDAO;
-import com.example.aydar.listnotepades.data.dao.UsersDAO;
-
-import java.util.ArrayList;
+import com.example.aydar.listnotepades.data.db.dao.NotesDAO;
+import com.example.aydar.listnotepades.data.db.dao.UsersDAO;
 
 
 /**

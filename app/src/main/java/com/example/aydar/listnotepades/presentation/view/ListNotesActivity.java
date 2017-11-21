@@ -1,4 +1,4 @@
-package com.example.aydar.listnotepades;
+package com.example.aydar.listnotepades.presentation.view;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -10,12 +10,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.example.aydar.listnotepades.data.NotePadesDBHelper;
-import com.example.aydar.listnotepades.data.dao.NotesDAO;
+import com.example.aydar.listnotepades.R;
+import com.example.aydar.listnotepades.data.db.NotePadesDBHelper;
+import com.example.aydar.listnotepades.data.db.dao.NotesDAO;
+import com.example.aydar.listnotepades.presentation.presenters.ListNotesPresenter;
 
 import java.util.ArrayList;
-
-import static com.example.aydar.listnotepades.StartActivity.USER_ID;
 
 public class ListNotesActivity extends AppCompatActivity implements IListNotesView {
     private ArrayList<String> listNames = new ArrayList();
@@ -30,7 +30,7 @@ public class ListNotesActivity extends AppCompatActivity implements IListNotesVi
 
     public static final Intent newIntent(Context context, long idUser) {
         Intent intent = new Intent(context, ListNotesActivity.class);
-        intent.putExtra(USER_ID, idUser);
+        intent.putExtra(StartActivity.USER_ID, idUser);
         return intent;
     }
 
@@ -39,7 +39,7 @@ public class ListNotesActivity extends AppCompatActivity implements IListNotesVi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_notes);
 
-        idUser = getIntent().getLongExtra(USER_ID, 0);
+        idUser = getIntent().getLongExtra(StartActivity.USER_ID, 0);
 
         dbHelper = new NotePadesDBHelper(this);
         notesDAO = new NotesDAO(dbHelper);

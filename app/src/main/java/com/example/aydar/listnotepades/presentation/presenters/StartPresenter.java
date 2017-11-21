@@ -1,10 +1,13 @@
-package com.example.aydar.listnotepades;
+package com.example.aydar.listnotepades.presentation.presenters;
 
 import android.content.Context;
 
-import com.example.aydar.listnotepades.data.dto.User;
-
-import java.security.NoSuchAlgorithmException;
+import com.example.aydar.listnotepades.R;
+import com.example.aydar.listnotepades.data.db.dto.User;
+import com.example.aydar.listnotepades.domain.CheckUserNameInteractor;
+import com.example.aydar.listnotepades.domain.CryptInteractor;
+import com.example.aydar.listnotepades.domain.GetUserInteractor;
+import com.example.aydar.listnotepades.presentation.view.IStartView;
 
 /**
  * Created by aydar on 17.11.17.
@@ -13,10 +16,13 @@ import java.security.NoSuchAlgorithmException;
 public class StartPresenter implements IStartPresenter {
     private GetUserInteractor getUserInteractor;
     private CheckUserNameInteractor checkUserNameInteractor;
+    private CryptInteractor cryptInteractor;
     private IStartView view;
 
     public long getUserByLogin(Context context, User userData) {
         getUserInteractor = new GetUserInteractor();
+        cryptInteractor = new CryptInteractor();
+        userData = cryptInteractor.cryptInteractor(userData);
         return getUserInteractor.getUserByLogin(context, userData);
     }
 

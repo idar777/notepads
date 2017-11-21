@@ -1,14 +1,13 @@
-package com.example.aydar.listnotepades.data.dao;
+package com.example.aydar.listnotepades.data.db.dao;
 
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.aydar.listnotepades.data.NotePadesDBHelper;
-import com.example.aydar.listnotepades.data.dto.Note;
+import com.example.aydar.listnotepades.data.db.NotePadesDBHelper;
+import com.example.aydar.listnotepades.data.db.dto.Note;
 
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,18 +51,11 @@ public class NotesDAO implements IDao<Note> {
     @Override
     public long insert(Note item) {
         SQLiteDatabase db = null;
-        long newRowId = 0;
-        ContentValues values = new ContentValues();
-
-        values.put(Notes.NOTE_ID, 0);
-        values.put(Notes.USER_ID, item.getUserID());
-        values.put(Notes.COLUMN_NAME, item.getName());
-        values.put(Notes.COLUMN_TEXT, item.getText());
-        values.put(Notes.COLUMN_DATE, item.getDate());
+        long newRowId = -1;
 
         try {
             db = this.dbHelper.getWritableDatabase();
-            newRowId = db.insert(Notes.TABLE_NAME, null, values);
+            newRowId = db.insert(Notes.TABLE_NAME, null, Notes.getContentValues(item));
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -146,10 +138,10 @@ public class NotesDAO implements IDao<Note> {
         return note;
     }
 
-    public ArrayList<Note> getNotesList(long idUser ) {
+    public List<Note> getNotesList(long idUser) {
         SQLiteDatabase db = null;
         Cursor cursor = null;
-        ArrayList<Note> noteList = new ArrayList();
+        List<Note> noteList = new ArrayList();
 
         String mQuery = "SELECT * FROM " + Notes.TABLE_NAME + " WHERE "
                 + Notes.USER_ID + " = " + idUser;

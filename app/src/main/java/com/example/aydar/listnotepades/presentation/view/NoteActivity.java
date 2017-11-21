@@ -1,4 +1,4 @@
-package com.example.aydar.listnotepades;
+package com.example.aydar.listnotepades.presentation.view;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,13 +9,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.aydar.listnotepades.data.NotePadesDBHelper;
-import com.example.aydar.listnotepades.data.dao.NotesDAO;
-import com.example.aydar.listnotepades.data.dto.Note;
-
-import java.security.NoSuchAlgorithmException;
-
-import static com.example.aydar.listnotepades.StartActivity.USER_ID;
+import com.example.aydar.listnotepades.R;
+import com.example.aydar.listnotepades.data.db.NotePadesDBHelper;
+import com.example.aydar.listnotepades.data.db.dao.NotesDAO;
+import com.example.aydar.listnotepades.data.db.dto.Note;
+import com.example.aydar.listnotepades.presentation.presenters.NotePresenter;
 
 
 public class NoteActivity extends AppCompatActivity implements INoteView {
@@ -32,7 +30,7 @@ public class NoteActivity extends AppCompatActivity implements INoteView {
 
     public static final Intent newIntent(Context context, long idUser, String editType, String noteId) {
         Intent intent = new Intent(context, NoteActivity.class);
-        intent.putExtra(USER_ID, idUser);
+        intent.putExtra(StartActivity.USER_ID, idUser);
         intent.putExtra(StartActivity.OPEN_TYPE, editType);
         intent.putExtra(StartActivity.NOTE_ID, noteId);
         return intent;
@@ -40,7 +38,7 @@ public class NoteActivity extends AppCompatActivity implements INoteView {
 
     public static final Intent newIntent(Context context, long idUser, String editType) {
         Intent intent = new Intent(context, NoteActivity.class);
-        intent.putExtra(USER_ID, idUser);
+        intent.putExtra(StartActivity.USER_ID, idUser);
         intent.putExtra(StartActivity.OPEN_TYPE, editType);
         return intent;
     }
@@ -85,6 +83,7 @@ public class NoteActivity extends AppCompatActivity implements INoteView {
     public void saveContentNoteOnClick(View view) {
         note = new Note(userId, name.getText().toString().trim(), text.getText().toString().trim());
         note.setId(idNote);
+        note.setDate("Today");
         notePresenter.updateNote(this, note, type);
     }
 

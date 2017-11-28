@@ -1,6 +1,5 @@
 package com.example.aydar.listnotepades.data.db.dao;
 
-import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -28,6 +27,7 @@ public class UsersDAO implements IDao<User> {
     @Override
     public void createTable() {
         SQLiteDatabase db = null;
+
         try {
             db = this.dbHelper.getWritableDatabase();
             db.execSQL(Users.CREATE_TABLE);
@@ -43,6 +43,7 @@ public class UsersDAO implements IDao<User> {
     @Override
     public void dropTable() {
         SQLiteDatabase db = null;
+
         try {
             db = this.dbHelper.getWritableDatabase();
             db.execSQL("DROP TABLE IF EXISTS " + Users.TABLE_NAME);
@@ -92,12 +93,11 @@ public class UsersDAO implements IDao<User> {
         if (isEntrance) {
             entranceData = " AND " + Users.COLUMN_PASSWORD + " = \"" + item.getPassword() + "\"";
         }
-
         String mQuery = "SELECT * FROM " + Users.TABLE_NAME + " WHERE "
                 + Users.COLUMN_LOGIN + " = \"" + item.getLogin() + "\"" + entranceData;
-
         SQLiteDatabase db = null;
         Cursor cursor = null;
+
         try {
             db = this.dbHelper.getWritableDatabase();
             cursor = db.rawQuery(mQuery, null);

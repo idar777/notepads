@@ -69,6 +69,7 @@ public class NotesDAO implements IDao<Note> {
     @Override
     public void update(Note item) {
         SQLiteDatabase db = null;
+
         try {
             db = this.dbHelper.getWritableDatabase();
             String mQuery = "UPDATE " + Notes.TABLE_NAME + " SET " + Notes.COLUMN_NAME + " = \"" +
@@ -87,6 +88,7 @@ public class NotesDAO implements IDao<Note> {
     @Override
     public void remove(Note item) {
         SQLiteDatabase db = null;
+
         try {
             db = this.dbHelper.getWritableDatabase();
             String mQuery = "DELETE FROM " + Notes.TABLE_NAME + " WHERE " + Notes._ID + " = " + item.getId();
@@ -109,7 +111,6 @@ public class NotesDAO implements IDao<Note> {
         SQLiteDatabase db = null;
         Cursor cursor = null;
         Note note = new Note(idNote);
-
         String mQuery = "SELECT * FROM " + Notes.TABLE_NAME + " WHERE "
                 + Notes._ID + " = " + String.valueOf(idNote);
 

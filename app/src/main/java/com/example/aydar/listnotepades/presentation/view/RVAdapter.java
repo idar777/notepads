@@ -14,16 +14,16 @@ import android.widget.TextView;
 import com.example.aydar.listnotepades.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> {
 
-    CustomItemClickListener listener;
+    private CustomItemClickListener listener;
+    private List<String> listNotes;
 
     public static class PersonViewHolder extends RecyclerView.ViewHolder {
-
         CardView cv;
         TextView nameNote;
-
         PersonViewHolder(View itemView) {
             super(itemView);
             cv = (CardView)itemView.findViewById(R.id.cv);
@@ -31,9 +31,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> 
         }
     }
 
-    ArrayList<String> listNotes;
-
-    RVAdapter(ArrayList<String> listNotes, CustomItemClickListener listener){
+    RVAdapter(List<String> listNotes, CustomItemClickListener listener){
         this.listNotes = listNotes;
         this.listener = listener;
     }

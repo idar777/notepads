@@ -11,8 +11,8 @@ import com.example.aydar.listnotepades.data.db.dto.Note;
  */
 
 public class DeleteNoteInteractor {
-    NotesDAO notesDAO;
-    NotePadesDBHelper notePadesDBHelper;
+    private NotesDAO notesDAO;
+    private NotePadesDBHelper notePadesDBHelper;
 
     public void deleteNoteInteractor(Context context, Note note){
         notePadesDBHelper = new NotePadesDBHelper(context);

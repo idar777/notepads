@@ -8,8 +8,10 @@ import android.view.View;
 
 public interface INoteView {
     void saveContentNoteOnClick(View view);
+
     void deleteCurrentNoteOnClick(View view);
 
     void showError(int resID);
+
     void updateListNotes();
 }

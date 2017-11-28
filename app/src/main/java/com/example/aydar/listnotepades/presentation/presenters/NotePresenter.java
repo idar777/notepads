@@ -16,13 +16,12 @@ import com.example.aydar.listnotepades.presentation.view.StartActivity;
  */
 
 public class NotePresenter implements INotePresenter {
-    LoadNoteInteractor loadNoteInteractor;
-    DeleteNoteInteractor deleteNoteInteractor;
-    AddNewNoteInteractor addNewNoteInteractor;
-    UpdateNoteInteractor updateNoteInteractor;
-    INoteView view;
-    Note note;
-
+    private LoadNoteInteractor loadNoteInteractor;
+    private DeleteNoteInteractor deleteNoteInteractor;
+    private AddNewNoteInteractor addNewNoteInteractor;
+    private UpdateNoteInteractor updateNoteInteractor;
+    private INoteView view;
+    private Note note;
 
     @Override
     public void attachView(INoteView view) {
@@ -34,11 +33,13 @@ public class NotePresenter implements INotePresenter {
         this.view = null;
     }
 
+    @Override
     public Note loadNote(Context context, long idNote){
         loadNoteInteractor = new LoadNoteInteractor();
         return loadNoteInteractor.loadNoteInteractor(context, idNote);
     };
 
+    @Override
     public void updateNote(Context context, Note note, String type){
         updateNoteInteractor = new UpdateNoteInteractor();
         addNewNoteInteractor = new AddNewNoteInteractor();
@@ -54,6 +55,7 @@ public class NotePresenter implements INotePresenter {
         }
     }
 
+    @Override
     public void deleteNote(Context context, long idNote){
         deleteNoteInteractor = new DeleteNoteInteractor();
         note = new Note(idNote);

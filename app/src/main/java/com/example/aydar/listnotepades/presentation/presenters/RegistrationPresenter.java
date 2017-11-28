@@ -21,6 +21,7 @@ public class RegistrationPresenter implements IRegistrationPresenter {
     private CryptInteractor cryptInteractor;
     private IRegistrationView view;
 
+    @Override
     public long getUserByLogin(Context context, User userData) {
         checkLoginInteractor = new CheckLoginInteractor();
         cryptInteractor = new CryptInteractor();
@@ -28,11 +29,13 @@ public class RegistrationPresenter implements IRegistrationPresenter {
         return checkLoginInteractor.checkLoginInteractor(context, userData);
     }
 
+    @Override
     public boolean checkUserName(User userData){
         checkUserNameInteractor = new CheckUserNameInteractor();
         return checkUserNameInteractor.checkUserName(userData);
     }
 
+    @Override
     public void addUserClick(Context context, User userData) {
         addUserInteractor = new AddUserInteractor();
         if (checkUserName(userData) & !(userData.getPassword().isEmpty())) {

@@ -11,8 +11,8 @@ import com.example.aydar.listnotepades.data.db.dto.Note;
  */
 
 public class UpdateNoteInteractor {
-    NotePadesDBHelper notePadesDBHelper;
-    NotesDAO notesDAO;
+    private NotePadesDBHelper notePadesDBHelper;
+    private NotesDAO notesDAO;
 
     public void updateNoteInteractor(Context context, Note note){
         notePadesDBHelper = new NotePadesDBHelper(context);

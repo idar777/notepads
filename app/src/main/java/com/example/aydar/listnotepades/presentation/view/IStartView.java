@@ -8,7 +8,10 @@ import android.view.View;
 
 public interface IStartView {
     void registrationClick(View view);
+
     void enterToNoteList(long idUser);
+
     void enterOnClink(View view);
+
     void showError(int resID);
 }

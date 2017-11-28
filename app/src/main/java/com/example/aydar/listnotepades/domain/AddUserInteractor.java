@@ -11,10 +11,11 @@ import com.example.aydar.listnotepades.data.db.dto.User;
  */
 
 public class AddUserInteractor {
-    UsersDAO usersDAO;
+    private UsersDAO usersDAO;
+    private NotePadesDBHelper dbHelper;
 
     public long addUserInteractor(Context context, User userData) {
-        NotePadesDBHelper dbHelper = new NotePadesDBHelper(context);
+        dbHelper = new NotePadesDBHelper(context);
         usersDAO = new UsersDAO(dbHelper);
         return usersDAO.insert(userData);
     }

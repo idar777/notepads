@@ -14,7 +14,6 @@ import com.example.aydar.listnotepades.presentation.presenters.StartPresenter;
 import io.fabric.sdk.android.Fabric;
 
 public class StartActivity extends AppCompatActivity implements IStartView{
-
     public static final String USER_ID = "user_id";
     public static final String NOTE_ID = "id_note";
     public static final String OPEN_TYPE = "type";
@@ -48,19 +47,23 @@ public class StartActivity extends AppCompatActivity implements IStartView{
         startPresenter.detachView(this);
     }
 
+    @Override
     public void registrationClick(View view) {
         startActivity(RegistrationActivity.newIntent(StartActivity.this));
     }
 
+    @Override
     public void enterToNoteList(long idUser){
         startActivity(ListNotesActivity.newIntent(StartActivity.this, idUser));
     }
 
+    @Override
     public void enterOnClink(View view) {
         userData = new User(loginEditText.getText().toString(), passwordEditText.getText().toString());
         startPresenter.enterOnClick(this, userData);
     }
 
+    @Override
     public void showError(int resID) {
         Toast.makeText(this, getResources().getText(resID), Toast.LENGTH_SHORT).show();
     }

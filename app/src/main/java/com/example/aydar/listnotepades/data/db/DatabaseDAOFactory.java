@@ -9,7 +9,7 @@ import com.example.aydar.listnotepades.data.db.dao.UsersDAO;
  */
 
 public class DatabaseDAOFactory {
-    NotePadesDBHelper dbHelper;
+    private final NotePadesDBHelper dbHelper;
 
     public DatabaseDAOFactory(NotePadesDBHelper dbHelper) {
         this.dbHelper = dbHelper;

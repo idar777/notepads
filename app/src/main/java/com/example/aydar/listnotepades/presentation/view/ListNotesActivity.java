@@ -16,17 +16,16 @@ import com.example.aydar.listnotepades.data.db.dao.NotesDAO;
 import com.example.aydar.listnotepades.presentation.presenters.ListNotesPresenter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ListNotesActivity extends AppCompatActivity implements IListNotesView {
-    private ArrayList<String> listNames = new ArrayList();
+    private List<String> listNames = new ArrayList<>();
     private RecyclerView recyclerView;
     private ListNotesPresenter listNotesPresenter = new ListNotesPresenter();;
-
     private long idUser;
     private Integer posItem;
-
-    NotePadesDBHelper dbHelper;
-    NotesDAO notesDAO;
+    private NotePadesDBHelper dbHelper;
+    private NotesDAO notesDAO;
 
     public static final Intent newIntent(Context context, long idUser) {
         Intent intent = new Intent(context, ListNotesActivity.class);
@@ -49,9 +48,7 @@ public class ListNotesActivity extends AppCompatActivity implements IListNotesVi
         LinearLayoutManager llr = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(llr);
         recyclerView.setHasFixedSize(true);
-
         listNames = listNotesPresenter.getListNotesNames(this, idUser);
-
         RVAdapter adapter = new RVAdapter(listNames, new CustomItemClickListener() {
             @Override
             public void onItemClick(View v, int position) {
@@ -62,6 +59,7 @@ public class ListNotesActivity extends AppCompatActivity implements IListNotesVi
         recyclerView.setAdapter(adapter);
     }
 
+    @Override
     public void addNewNote(View view) {
         startActivity(NoteActivity.newIntent(ListNotesActivity.this, idUser, StartActivity.NEW_TYPE));
     }

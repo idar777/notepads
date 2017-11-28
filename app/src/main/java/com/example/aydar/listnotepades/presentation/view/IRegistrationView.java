@@ -8,6 +8,8 @@ import android.view.View;
 
 public interface IRegistrationView {
     void addUserClick(View view);
+
     void showError(int resID);
+
     void enterToNoteList(long idUser);
 }

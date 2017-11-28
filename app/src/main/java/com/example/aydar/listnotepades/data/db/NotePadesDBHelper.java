@@ -7,17 +7,14 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.example.aydar.listnotepades.data.db.dao.NotesDAO;
 import com.example.aydar.listnotepades.data.db.dao.UsersDAO;
 
-
 /**
  * Created by aydar on 22.08.17.
  */
 
 public class NotePadesDBHelper extends SQLiteOpenHelper{
     private static final String DATABASE_NAME = "notepads.db";
-
     private static final int DATABASE_VERSION = 6;
-
-    DatabaseDAOFactory factory;
+    private DatabaseDAOFactory factory;
 
     public NotePadesDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -27,7 +24,6 @@ public class NotePadesDBHelper extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase db) {
         factory = new DatabaseDAOFactory(this);
         factory.getDaoInstance(UsersDAO.class).createTable();
-
         factory.getDaoInstance(NotesDAO.class).createTable();
     }
 
@@ -36,7 +32,6 @@ public class NotePadesDBHelper extends SQLiteOpenHelper{
         factory = new DatabaseDAOFactory(this);
         factory.getDaoInstance(UsersDAO.class).dropTable();
         factory.getDaoInstance(NotesDAO.class).dropTable();
-
         // Создаём новую таблицу
         onCreate(db);
     }

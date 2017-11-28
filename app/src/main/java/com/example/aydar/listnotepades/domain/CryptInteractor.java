@@ -18,13 +18,10 @@ public class CryptInteractor {
     public User cryptInteractor(User user){
         try {
             MessageDigest secure = MessageDigest.getInstance("MD5");
-
             byte[] md5 = secure.digest(user.getLogin().getBytes());
             user.setLogin(String.format("%032X", new BigInteger(1, md5)));
-
             md5 = secure.digest(user.getPassword().getBytes());
             user.setPassword(String.format("%032X", new BigInteger(1, md5)));
-
         } catch (NoSuchAlgorithmException e) {
             Log.d(TAG, e.getMessage());
         }

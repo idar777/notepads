@@ -11,12 +11,12 @@ import com.example.aydar.listnotepades.data.db.dto.Note;
  */
 
 public class LoadNoteInteractor {
-    NotePadesDBHelper notePadesDBHelper;
-    NotesDAO notesDAO;
+    private NotePadesDBHelper notePadesDBHelper;
+    private NotesDAO notesDAO;
+
     public Note loadNoteInteractor(Context context, long idNote){
         notePadesDBHelper = new NotePadesDBHelper(context);
         notesDAO = new NotesDAO(notePadesDBHelper);
         return notesDAO.getNote(idNote);
     }
-
 }

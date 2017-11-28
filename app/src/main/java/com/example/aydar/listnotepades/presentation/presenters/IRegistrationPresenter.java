@@ -11,7 +11,12 @@ import com.example.aydar.listnotepades.presentation.view.IRegistrationView;
 
 public interface IRegistrationPresenter {
     void attachView(IRegistrationView view);
+
     void detachView(IRegistrationView view);
+
     long getUserByLogin(Context context, User userData);
+
     boolean checkUserName(User userData);
+
+    void addUserClick(Context context, User userData);
 }

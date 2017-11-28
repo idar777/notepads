@@ -16,8 +16,7 @@ public class RegistrationActivity extends AppCompatActivity implements IRegistra
 
     private EditText loginEditText;
     private EditText passwordEditText;
-    User userData;
-
+    private User userData;
     private RegistrationPresenter registrationPresenter = new RegistrationPresenter();
 
     public static final Intent newIntent(Context context) {
@@ -29,7 +28,6 @@ public class RegistrationActivity extends AppCompatActivity implements IRegistra
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
-
         loginEditText = (EditText)findViewById(R.id.login_edit_text);
         passwordEditText = (EditText)findViewById(R.id.password_edit_text);
     }
@@ -46,11 +44,13 @@ public class RegistrationActivity extends AppCompatActivity implements IRegistra
         registrationPresenter.detachView(this);
     }
 
+    @Override
     public void addUserClick(View view) {
         userData = new User(loginEditText.getText().toString(), passwordEditText.getText().toString());
         registrationPresenter.addUserClick(this, userData);
     }
 
+    @Override
     public void enterToNoteList(long idUser){
         startActivity(ListNotesActivity.newIntent(RegistrationActivity.this, idUser));
     }

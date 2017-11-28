@@ -20,13 +20,13 @@ public class NoteActivity extends AppCompatActivity implements INoteView {
 
     private String type;
     private long userId;
-    private Integer idNote = 0;
+    private Integer idNote = -1;
     private EditText name;
     private EditText text;
-    NotePresenter notePresenter = new NotePresenter();
-    Note note;
-    NotePadesDBHelper dbHelper;
-    NotesDAO notesDAO;
+    private NotePresenter notePresenter;
+    private Note note;
+    private NotePadesDBHelper dbHelper;
+    private NotesDAO notesDAO;
 
     public static final Intent newIntent(Context context, long idUser, String editType, String noteId) {
         Intent intent = new Intent(context, NoteActivity.class);
@@ -48,13 +48,12 @@ public class NoteActivity extends AppCompatActivity implements INoteView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note);
 
+        notePresenter = new NotePresenter();
         dbHelper = new NotePadesDBHelper(this);
         notesDAO = new NotesDAO(dbHelper);
-
         Button bDelete = (Button)findViewById(R.id.delete_button);
         name = (EditText)findViewById(R.id.name_note_edit_text);
         text = (EditText)findViewById(R.id.content_edit_text);
-
         type = getIntent().getStringExtra(StartActivity.OPEN_TYPE);
         userId = getIntent().getLongExtra(StartActivity.USER_ID, 0);
 
@@ -80,6 +79,7 @@ public class NoteActivity extends AppCompatActivity implements INoteView {
         notePresenter.detachView(this);
     }
 
+    @Override
     public void saveContentNoteOnClick(View view) {
         note = new Note(userId, name.getText().toString().trim(), text.getText().toString().trim());
         note.setId(idNote);
@@ -87,16 +87,18 @@ public class NoteActivity extends AppCompatActivity implements INoteView {
         notePresenter.updateNote(this, note, type);
     }
 
+    @Override
     public void deleteCurrentNoteOnClick(View view) {
         notePresenter.deleteNote(this, idNote);
-
         startActivity(ListNotesActivity.newIntent(NoteActivity.this, userId));
     }
 
+    @Override
     public void showError(int resID) {
         Toast.makeText(this, getResources().getText(resID), Toast.LENGTH_SHORT).show();
     }
 
+    @Override
     public void updateListNotes(){
         startActivity(ListNotesActivity.newIntent(NoteActivity.this, userId));
     }

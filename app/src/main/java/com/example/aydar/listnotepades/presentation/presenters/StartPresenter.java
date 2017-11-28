@@ -19,6 +19,7 @@ public class StartPresenter implements IStartPresenter {
     private CryptInteractor cryptInteractor;
     private IStartView view;
 
+    @Override
     public long getUserByLogin(Context context, User userData) {
         getUserInteractor = new GetUserInteractor();
         cryptInteractor = new CryptInteractor();
@@ -36,12 +37,13 @@ public class StartPresenter implements IStartPresenter {
         this.view = null;
     }
 
+    @Override
     public boolean checkUserName(User userData) {
         checkUserNameInteractor = new CheckUserNameInteractor();
-        boolean isValid =  checkUserNameInteractor.checkUserName(userData);
-        return isValid;
+        return checkUserNameInteractor.checkUserName(userData);
     }
 
+    @Override
     public void enterOnClick(Context context, User userData){
         if (checkUserName(userData)) {
             long idUser = getUserByLogin(context, userData);

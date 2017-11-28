@@ -11,8 +11,12 @@ import com.example.aydar.listnotepades.presentation.view.INoteView;
 
 public interface INotePresenter {
     void attachView(INoteView view);
+
     void detachView(INoteView view);
+
     Note loadNote(Context context, long idNote);
+
     void updateNote(Context context, Note note, String type);
+
     void deleteNote(Context context, long idNote);
 }

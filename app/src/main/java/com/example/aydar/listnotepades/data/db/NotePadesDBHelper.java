@@ -15,7 +15,7 @@ import com.example.aydar.listnotepades.data.db.dao.UsersDAO;
 
 public class NotePadesDBHelper extends SQLiteOpenHelper{
     private static final String DATABASE_NAME = "notepads.db";
-    private static final int DATABASE_VERSION = 7;
+    private static final int DATABASE_VERSION = 11;
     private DatabaseDAOFactory factory;
 
     public NotePadesDBHelper(Context context) {

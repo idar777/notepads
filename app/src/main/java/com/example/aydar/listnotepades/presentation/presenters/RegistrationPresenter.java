@@ -38,12 +38,13 @@ public class RegistrationPresenter implements IRegistrationPresenter {
     @Override
     public void addUserClick(Context context, User userData) {
         addUserInteractor = new AddUserInteractor();
+        cryptInteractor = new CryptInteractor();
         if (checkUserName(userData) & !(userData.getPassword().isEmpty())) {
             long idUser = getUserByLogin(context, userData);
             if (idUser != 0) {
                 view.showError(R.string.error_login_exists);
             } else {
-                userData = cryptInteractor.cryptInteractor(userData);
+                //userData = cryptInteractor.cryptInteractor(userData);
                 idUser =  addUserInteractor.addUserInteractor(context, userData);
                 view.enterToNoteList(idUser);
             }

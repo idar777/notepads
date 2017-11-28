@@ -28,6 +28,7 @@ public class UsersDAO implements IDao<User> {
     public void createTable(SQLiteDatabase db) {
         try {
             db.execSQL(Users.CREATE_TABLE);
+            int i = 5;
         } catch (SQLException e) {
             Log.d(TAG, e.getMessage());
         }

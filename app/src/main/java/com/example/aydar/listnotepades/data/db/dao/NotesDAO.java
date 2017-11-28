@@ -36,7 +36,7 @@ public class NotesDAO implements IDao<Note> {
     @Override
     public void dropTable(SQLiteDatabase db) {
         try {
-            db.execSQL("DROP TABLE IF EXISTS " + Users.TABLE_NAME);
+            db.execSQL("DROP TABLE IF EXISTS " + Notes.TABLE_NAME);
         } catch (SQLException e) {
         }
     }

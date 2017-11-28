@@ -25,34 +25,20 @@ public class UsersDAO implements IDao<User> {
     }
 
     @Override
-    public void createTable() {
-        SQLiteDatabase db = null;
-
+    public void createTable(SQLiteDatabase db) {
         try {
-            db = this.dbHelper.getWritableDatabase();
             db.execSQL(Users.CREATE_TABLE);
         } catch (SQLException e) {
             Log.d(TAG, e.getMessage());
-        } finally {
-            if (db != null) {
-                db.close();
-            }
         }
     }
 
     @Override
-    public void dropTable() {
-        SQLiteDatabase db = null;
-
+    public void dropTable(SQLiteDatabase db) {
         try {
-            db = this.dbHelper.getWritableDatabase();
             db.execSQL("DROP TABLE IF EXISTS " + Users.TABLE_NAME);
         } catch (SQLException e) {
             Log.d(TAG, e.getMessage());
-        } finally {
-            if (db != null) {
-                db.close();
-            }
         }
     }
 
@@ -64,9 +50,9 @@ public class UsersDAO implements IDao<User> {
     @Override
     public long insert(User item) {
         long newRowId = -1;
-        SQLiteDatabase db =null;
+        SQLiteDatabase db = null;
 
-        try{
+        try {
             db = this.dbHelper.getWritableDatabase();
             newRowId = db.insert(Users.TABLE_NAME, null, Users.getContentValues(item));
         } catch (SQLException e) {

@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.aydar.listnotepades.data.db.NotePadesDBHelper;
 import com.example.aydar.listnotepades.data.db.dto.Note;
@@ -24,23 +25,20 @@ public class NotesDAO implements IDao<Note> {
     }
 
     @Override
-    public void createTable() {
-        SQLiteDatabase db = null;
-
+    public void createTable(SQLiteDatabase db) {
         try {
-            db = this.dbHelper.getWritableDatabase();
             db.execSQL(Notes.CREATE_TABLE);
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            if (db != null) {
-                db.close();
-            }
         }
     }
 
     @Override
-    public void dropTable() {
+    public void dropTable(SQLiteDatabase db) {
+        try {
+            db.execSQL("DROP TABLE IF EXISTS " + Users.TABLE_NAME);
+        } catch (SQLException e) {
+        }
     }
 
     @Override

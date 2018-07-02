@@ -18,5 +18,6 @@
     <dimen name="login_text_size">18sp</dimen>
     <dimen name="password_text_size">18sp</dimen>
     <dimen name="registration_text_size">18sp</dimen>
+    <dimen name="list_name_notes_text_size">18sp</dimen>
 
 </resources>

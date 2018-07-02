@@ -97,18 +97,10 @@
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:id="@+id/entrance_button"
-                android:onClick="entrance"
+                android:onClick="enterOnClink"
                 android:layout_gravity="center"
                 android:layout_weight="0.5" />
         </LinearLayout>
-
-        <Button
-            android:text="@string/button_database_look_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/look_database_button"
-            android:onClick="lookToDatabaseClick"
-            android:visibility="visible"/>
 
     </LinearLayout>
 
